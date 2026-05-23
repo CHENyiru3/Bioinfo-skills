@@ -1,0 +1,11 @@
+schema_version: "0.1.0"
+fixtures:
+  - id: pbmc3k_tiny_h5ad
+    status: placeholder
+    intended_path: tests/fixtures/pbmc3k_tiny.h5ad
+  - id: multi_batch_tiny_h5ad
+    status: placeholder
+    intended_path: tests/fixtures/multi_batch_tiny.h5ad
+  - id: multi_sample_condition_tiny_h5ad
+    status: placeholder
+    intended_path: tests/fixtures/multi_sample_condition_tiny.h5ad

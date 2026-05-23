@@ -1,0 +1,37 @@
+schema_version: "0.1.0"
+pipeline_id: scrna_marker_ranking_m1
+stage: "11_marker_ranking"
+tool_ref: scrna.scverse.tool.scanpy_rank_genes_groups
+wrapper: wrappers/python/scanpy_rank_cluster_markers.py
+adapter: workflow/rules/scrna_marker_ranking.smk
+input_h5ad: tests/fixtures/downstream_h5ad/clustered_tiny.h5ad
+outputs:
+  h5ad: runs/marker_ranking_m1/clustered_tiny.markers.h5ad
+  markers_tsv: runs/marker_ranking_m1/markers.tsv
+  group_sizes_json: runs/marker_ranking_m1/group_sizes.json
+  params_json: runs/marker_ranking_m1/resolved_params.json
+  versions_json: runs/marker_ranking_m1/versions.json
+logs:
+  marker_ranking: runs/marker_ranking_m1/logs/marker_ranking.log
+benchmarks:
+  marker_ranking: runs/marker_ranking_m1/benchmarks/marker_ranking.tsv
+params:
+  groupby: leiden
+  expression_source: layer
+  layer: log1p_norm
+  method: wilcoxon
+  reference: rest
+  n_genes: 50
+  key_added: bioinfo_marker_ranking
+claims:
+  allowed:
+    - cluster marker ranking for existing groups
+    - descriptive per-cell group marker table
+  forbidden:
+    - condition-level differential expression
+    - replicate-aware inference
+    - cell type annotation certainty
+caveats:
+  - Requires an existing group column.
+  - Requires a declared expression source.
+  - Does not normalize, filter, integrate, cluster, or annotate.

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "workflow_node.schema.json",
+  "title": "Backend-Neutral Workflow Node",
+  "type": "object",
+  "required": ["id", "schema_version", "label", "domain", "inputs", "outputs"],
+  "properties": {
+    "id": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "label": { "type": "string" },
+    "domain": { "type": "string" },
+    "method_family": { "type": "string" },
+    "inputs": { "type": "array" },
+    "outputs": { "type": "array" },
+    "parameters": { "type": ["object", "array"] },
+    "resources": { "type": "object" },
+    "tool_refs": { "type": "array", "items": { "type": "string" } },
+    "runtime_requirements": { "type": ["object", "array"] },
+    "validation": { "type": ["object", "array"] },
+    "provenance": { "type": ["object", "array"] }
+  },
+  "additionalProperties": true
+}
+

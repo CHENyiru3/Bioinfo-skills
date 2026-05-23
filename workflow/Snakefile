@@ -1,0 +1,11 @@
+configfile: "pipelines/specs/scrna_marker_ranking_m1.pipeline.yml"
+
+include: "rules/scrna_marker_ranking.smk"
+
+rule all:
+    input:
+        config["outputs"]["h5ad"],
+        config["outputs"]["markers_tsv"],
+        config["outputs"]["group_sizes_json"],
+        config["outputs"]["params_json"],
+        config["outputs"]["versions_json"]

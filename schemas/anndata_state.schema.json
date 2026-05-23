@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "anndata_state.schema.json",
+  "title": "AnnData scRNA State Contract",
+  "type": "object",
+  "required": ["schema_version", "object_type", "layers", "obs", "var", "uns"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "object_type": { "enum": ["AnnData", "MuData", "SpatialData", "unknown"] },
+    "x_state": { "type": "string" },
+    "layers": { "type": "object" },
+    "obs": { "type": "object" },
+    "var": { "type": "object" },
+    "obsm": { "type": "object" },
+    "obsp": { "type": "object" },
+    "uns": { "type": "object" },
+    "required_for": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}
+

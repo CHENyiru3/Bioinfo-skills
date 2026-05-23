@@ -1,0 +1,10 @@
+schema_version: "0.1.0"
+run_id: example_run_id
+mode: planned
+adapter: not_bound
+tasks: []
+inputs: []
+outputs: []
+parameters: {}
+software_versions: {}
+caveats: []

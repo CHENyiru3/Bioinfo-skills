@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "run_id": "dryrun_marker_ranking_m1",
+  "mode": "dry-run",
+  "adapter": "workflow/rules/scrna_marker_ranking.smk",
+  "tasks": [
+    {
+      "stage": "11_marker_ranking",
+      "tool_ref": "scrna.scverse.tool.scanpy_rank_genes_groups",
+      "wrapper": "wrappers/python/scanpy_rank_cluster_markers.py",
+      "status": "dry_run_passed",
+      "evidence": "Direct Snakemake dry-run passed, and Bioinfo-skills.tests.workflow.test_marker_ranking_workflow executed the rule successfully with snakemake 9.21.0"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "tests/fixtures/downstream_h5ad/clustered_tiny.h5ad",
+      "role": "clustered AnnData fixture",
+      "status": "intended fixture path; dry-run test builds a temporary fixture"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "runs/marker_ranking_m1/markers.tsv",
+      "role": "marker table"
+    },
+    {
+      "path": "runs/marker_ranking_m1/clustered_tiny.markers.h5ad",
+      "role": "AnnData with marker result in .uns"
+    }
+  ],
+  "parameters": {
+    "groupby": "leiden",
+    "expression_source": "layer",
+    "layer": "log1p_norm",
+    "method": "wilcoxon",
+    "reference": "rest",
+    "n_genes": 50,
+    "key_added": "bioinfo_marker_ranking"
+  },
+  "software_versions": {},
+  "caveats": [
+    "This runlog records planned dry-run evidence for the repository binding; separate tests execute the rule on temporary synthetic fixtures only.",
+    "Wrapper execution is validated separately by tests/wrappers/test_scanpy_rank_cluster_markers.py.",
+    "Marker ranking is descriptive and is not replicate-aware condition-level differential expression."
+  ]
+}

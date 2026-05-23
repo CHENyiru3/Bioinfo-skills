@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "package_ref.schema.json",
+  "title": "Package Reference",
+  "type": "object",
+  "required": ["id", "kind", "package", "language", "ecosystem", "runtime_status"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "kind": { "const": "package_ref" },
+    "package": { "type": "string", "minLength": 1 },
+    "import_name": { "type": "string" },
+    "language": { "type": "string" },
+    "ecosystem": { "type": "string" },
+    "docs_local": { "type": "string" },
+    "source_url": { "type": "string" },
+    "source_urls": { "type": "array", "items": { "type": "string" } },
+    "source_version": { "type": "string" },
+    "source_accessed_at": { "type": "string" },
+    "source_local_paths": { "type": "array", "items": { "type": "string" } },
+    "distillation_status": {
+      "enum": ["placeholder", "distilled", "verified", "needs_version_check", "unknown"]
+    },
+    "runtime_status": {
+      "enum": ["installed", "missing", "docs_only", "platform_limited", "gpu_limited", "waived_with_evidence", "unknown"]
+    },
+    "workflow_stages": { "type": "array", "items": { "type": "string" } },
+    "install_probe": { "type": ["string", "object", "null"] },
+    "import_probe": { "type": ["string", "object", "null"] }
+  },
+  "additionalProperties": true
+}
