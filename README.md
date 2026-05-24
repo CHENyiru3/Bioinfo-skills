@@ -21,14 +21,15 @@ under `.agents/skills/`. Load the repository skills in Codex, then use the same
 high-level sequence a Spec Kit user expects:
 
 ```text
-$speckit-constitution
-$speckit-specify
-$speckit-clarify
-$speckit-checklist
-$speckit-plan
-$speckit-tasks
-$speckit-analyze
-$speckit-implement
+$biokit-constitution
+$biokit-specify
+$biokit-clarify
+$biokit-checklist
+$biokit-plan
+$biokit-tasks
+$biokit-analyze
+$biokit-distill
+$biokit-implement
 ```
 
 The names and flow are Spec Kit-like, but the contract remains Bioinfo SDD. For
@@ -41,14 +42,15 @@ checks.
 
 The active feature pointer lives at `.specify/feature.json`, so downstream
 skills can locate `specs/<feature>/` without relying only on the git branch
-name. `AGENTS.md` points Codex at the current plan between the managed
-`SPECKIT` markers.
+name. `$biokit-distill` can refresh `current-understanding.md` in the active
+feature directory before resuming a half-finished workflow. `AGENTS.md` points
+Codex at the current plan between the managed `SPECKIT` markers.
 
 ## Core Model
 
 - `skills/`: routing and stage guidance for biological workflow intent.
-- `.agents/skills/`: Codex-loadable Spec Kit-style workflow skills and
-  Bioinfo SDD helper skills.
+- `.agents/skills/`: Codex-loadable `biokit-*` workflow skills and Bioinfo
+  SDD helper skills.
 - `sdd/sections/<section_id>/`: durable section specs, plans, tasks, gates,
   evidence, run state, and active installed refs.
 - `tool_market/`: inactive source registry of selectable tool bundles and

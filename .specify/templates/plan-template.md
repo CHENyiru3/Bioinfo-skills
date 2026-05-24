@@ -3,7 +3,7 @@
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
 **Input**: Feature or section specification from `/specs/[###-feature-name]/spec.md`
 
-**Note**: This template is filled in by the `/speckit-plan` workflow. It must
+**Note**: This template is filled in by the `/biokit-plan` workflow. It must
 align with `.specify/memory/constitution.md` and the Bioinfo-skills SDD model.
 
 ## Summary

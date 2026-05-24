@@ -15,9 +15,10 @@ artifacts that downstream skills can locate without guessing from branch names.
 The Bioinfo-skills command surface must feel like Spec Kit for Codex users
 while using a Bioinfo-owned namespace that does not conflict with upstream
 Spec Kit: `$biokit-constitution`, `$biokit-specify`, `$biokit-clarify`,
-`$biokit-checklist`, `$biokit-plan`, `$biokit-tasks`, `$biokit-analyze`, and
-`$biokit-implement` are the primary entry points. Those entries must route
-into Bioinfo SDD behavior rather than generic application generation. Bioinfo
+`$biokit-checklist`, `$biokit-plan`, `$biokit-tasks`, `$biokit-analyze`,
+`$biokit-distill`, and `$biokit-implement` are the primary entry points. Those
+entries must route into Bioinfo SDD behavior rather than generic application
+generation. Bioinfo
 section workflows, section gates, capability packs, `tool_market/` bundles,
 and section-local `installed_refs/` remain authoritative.
 
@@ -41,7 +42,8 @@ section gates or installed-ref revisions.
 
 A Bioinfo-skills user working in Codex can follow the same mental model as
 upstream Spec Kit: define project rules, specify a feature, clarify it, check
-it, plan it, generate tasks, analyze consistency, and implement. The user does
+it, plan it, generate tasks, analyze consistency, distill current state, and
+implement. The user does
 not need to learn a separate command vocabulary before they can operate the
 bioinformatics SDD system.
 
@@ -199,7 +201,7 @@ or artifact comes next.
 - **FR-001**: The system MUST expose or document the same core user workflow as
   upstream Spec Kit for Codex users under the Bioinfo-owned `biokit-*`
   namespace: constitution, specify, clarify, checklist, plan, tasks, analyze,
-  and implement.
+  distill, and implement.
 - **FR-002**: The system MUST keep Codex skills loadable from
   `.agents/skills/biokit-*/SKILL.md` with command names that match the
   `$biokit-*` invocation style.
@@ -210,6 +212,10 @@ or artifact comes next.
   `.specify/feature.json` whenever `$biokit-specify` creates a feature spec.
 - **FR-005**: Downstream skills MUST locate the active feature from
   `.specify/feature.json` before using branch-name conventions.
+- **FR-005a**: `$biokit-distill` MUST create or refresh
+  `current-understanding.md` in the active feature directory by summarizing the
+  current workflow state, active section, installed refs, packages/tools,
+  wrappers, adapters, checks, evidence, pending tasks, risks, and next actions.
 - **FR-006**: Analysis-section requests MUST keep `section.yml` as the
   canonical machine-readable source of truth.
 - **FR-007**: Package and tool selections MUST become active only through
@@ -264,8 +270,8 @@ or artifact comes next.
   executable tasks remain tied to section artifacts, installed refs, wrappers,
   adapters, checks, or evidence.
 - **SC-005**: A user familiar with upstream Spec Kit can correctly identify the
-  next Bioinfo-skills `biokit-*` command in the workflow for at least 7 of the
-  8 core workflow phases from the project guidance.
+  next Bioinfo-skills `biokit-*` command in the workflow for at least 8 of the
+  9 core workflow phases from the project guidance.
 
 ## Assumptions
 
@@ -277,8 +283,8 @@ or artifact comes next.
   copy wholesale.
 - The feature should improve command and skill guidance before adding a full
   custom integration installer.
-- Existing `$speckit-*` skill names may remain only as temporary compatibility
-  aliases during migration; new guidance must converge on the Bioinfo-owned
-  `biokit-*` workflow described here.
+- Historical `$speckit-*` references are documentation-only migration context;
+  loadable Bioinfo workflow skills use the Bioinfo-owned `biokit-*` namespace
+  described here.
 - Bioinfo SDD gates and installed refs are non-negotiable for analysis-section
   work even when the workflow phases mirror upstream Spec Kit.

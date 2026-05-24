@@ -5,20 +5,20 @@
 Represents the installed Codex skills a user can invoke.
 
 Fields:
-- `name`: Stable skill directory name, such as `speckit-plan` or
+- `name`: Stable skill directory name, such as `biokit-plan` or
   `bioinfo-sdd-plan-section`.
 - `path`: Repository-relative path to `SKILL.md`.
 - `description`: YAML frontmatter summary used by the skill loader.
 - `kind`: Core Spec Kit workflow skill, git extension skill, or Bioinfo section
   helper skill.
 - `invocation`: User-facing Codex invocation where applicable, such as
-  `$speckit-plan`.
+  `$biokit-plan`.
 
 Validation rules:
 - `SKILL.md` must start with `---` and contain a closing `---`.
 - `name` in frontmatter must match the skill directory name.
 - Core workflow skills must exist for constitution, specify, clarify,
-  checklist, plan, tasks, analyze, and implement.
+  checklist, plan, tasks, analyze, distill, and implement.
 
 ## Feature Directory
 
@@ -37,8 +37,8 @@ Fields:
 Validation rules:
 - The active path must match `.specify/feature.json`.
 - `spec.md` and `plan.md` must contain no unresolved template placeholders.
-- Downstream plan/tasks/analyze/implement skills must read this directory
-  before branch-name fallback.
+- Downstream plan/tasks/analyze/distill/implement skills must read this
+  directory before branch-name fallback.
 
 ## Active Feature Pointer
 
@@ -54,9 +54,35 @@ Validation rules:
 - The referenced directory must exist.
 
 State transitions:
-- Created or replaced by `$speckit-specify`.
-- Read by `$speckit-plan`, `$speckit-tasks`, `$speckit-analyze`, and
-  `$speckit-implement`.
+- Created or replaced by `$biokit-specify`.
+- Read by `$biokit-plan`, `$biokit-tasks`, `$biokit-analyze`,
+  `$biokit-distill`, and `$biokit-implement`.
+
+## Current Understanding
+
+Represents the resume artifact created by `$biokit-distill` for a partially
+completed feature or analysis pipeline.
+
+Fields:
+- `path`: `specs/<feature>/current-understanding.md`.
+- `generated`: Report generation date.
+- `feature_directory`: Active feature directory.
+- `section`: Active section ID, N/A, or unresolved.
+- `workflow_state`: Current phase, completed work, pending work, and gates.
+- `packages_tools`: Active installed refs, referenced market bundles, and
+  packages/tools actually in use.
+- `execution_surface`: Wrappers, adapters, workflows, checks, and relevant
+  commands.
+- `risks_unknowns`: Blockers, ambiguous state, missing refs, skipped evidence,
+  and caveats.
+- `next_actions`: Ordered exact commands, task IDs, or file edits needed to
+  continue.
+
+Validation rules:
+- It must summarize existing state and label unknowns; it must not invent
+  package/tool activation.
+- It must not replace canonical state in `section.yml`, tasks, gates, installed
+  refs, or evidence.
 
 ## Bioinfo SDD Section
 

@@ -9,7 +9,7 @@ is an architecture and usage reference, not a dependency to vendor wholesale.
 ## Summary
 
 Align Bioinfo-skills with the upstream Spec Kit user journey for Codex users:
-install/load skills under `.agents/skills`, invoke `$speckit-*` skills in the
+install/load skills under `.agents/skills`, invoke `$biokit-*` skills in the
 same high-level sequence, persist the active feature path in
 `.specify/feature.json`, and update `AGENTS.md` with the active plan. Preserve
 Bioinfo SDD semantics: analysis work remains section-scoped, `section.yml`
@@ -36,9 +36,9 @@ four Bioinfo section helper skills:
 **Wrapper/Adapter**: No wrapper or adapter change in this planning phase
 **Testing**: frontmatter presence checks, core skill presence checks, `.specify/feature.json` pointer check, `bioinfo-sdd run-check skill_tree`, targeted unit tests if discovery code changes
 **Storage**: `.agents/skills/`, `.specify/feature.json`, `AGENTS.md`, `specs/001-speckit-usage-parity/`, README/runtime docs, tests
-**Target Platform**: Linux local filesystem with Codex skills; Bash scripts only for Spec Kit helper scripts
+**Target Platform**: Linux local filesystem with Codex skills; Bash scripts only for BioKit helper scripts
 **Constraints**: Do not add PowerShell support, multi-agent integration switching, remote workflow catalogs, remote marketplaces, or arbitrary executable plugin loading in this feature
-**Scale/Scope**: One Codex integration path, eight core `$speckit-*` skills, four Bioinfo section helper skills, current scRNA/scverse exemplar as validation context
+**Scale/Scope**: One Codex integration path, nine core `$biokit-*` skills, four Bioinfo section helper skills, current scRNA/scverse exemplar as validation context
 
 ## Constitution Check
 
@@ -72,8 +72,8 @@ specs/001-speckit-usage-parity/
 
 ```text
 .agents/skills/
-├── speckit-*/SKILL.md                  # Spec Kit-style Codex skills
-├── speckit-git-*/SKILL.md              # Git extension skills
+├── biokit-*/SKILL.md                  # Spec Kit-style Codex skills
+├── biokit-git-*/SKILL.md               # Git extension skills
 └── bioinfo-sdd-*-section/SKILL.md      # Bioinfo section helper skills
 
 .specify/
@@ -113,9 +113,10 @@ tasks later reveal a validation-only helper is required.
 
 ### Phase 1: Design
 
-- Treat upstream Codex integration as the ergonomic target:
-  `.agents/skills/speckit-<command>/SKILL.md`, `$ARGUMENTS`,
-  `$speckit-*` invocation, dot-to-hyphen hook normalization, and `AGENTS.md`
+- Treat upstream Codex integration as the ergonomic target while using the
+  Bioinfo-owned namespace:
+  `.agents/skills/biokit-<command>/SKILL.md`, `$ARGUMENTS`,
+  `$biokit-*` invocation, dot-to-hyphen hook normalization, and `AGENTS.md`
   managed context markers.
 - Treat `.specify/feature.json` as the active feature pointer for downstream
   commands before branch-name fallback.
@@ -133,12 +134,12 @@ tasks later reveal a validation-only helper is required.
 - Validate frontmatter by checking that the four Bioinfo helper skills begin
   with `---` and have a closing `---`.
 - Validate core skill presence under `.agents/skills/` for constitution,
-  specify, clarify, checklist, plan, tasks, analyze, and implement.
+  specify, clarify, checklist, plan, tasks, analyze, distill, and implement.
 - Validate `.specify/feature.json` points to
   `specs/001-speckit-usage-parity`.
 - Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check skill_tree`.
 - If implementation changes discovery behavior, add or update focused tests
-  under `tests/` before completing `$speckit-implement`.
+  under `tests/` before completing `$biokit-implement`.
 
 ## Complexity Tracking
 

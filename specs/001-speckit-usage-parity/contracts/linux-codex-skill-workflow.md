@@ -10,14 +10,15 @@ PowerShell, remote workflow catalogs, or remote marketplaces.
 
 Required core skills:
 
-- `$speckit-constitution`
-- `$speckit-specify`
-- `$speckit-clarify`
-- `$speckit-checklist`
-- `$speckit-plan`
-- `$speckit-tasks`
-- `$speckit-analyze`
-- `$speckit-implement`
+- `$biokit-constitution`
+- `$biokit-specify`
+- `$biokit-clarify`
+- `$biokit-checklist`
+- `$biokit-plan`
+- `$biokit-tasks`
+- `$biokit-analyze`
+- `$biokit-distill`
+- `$biokit-implement`
 
 Each required skill must exist at:
 
@@ -30,7 +31,7 @@ describe Bioinfo SDD behavior when it differs from generic Spec Kit behavior.
 
 ## Feature Discovery Contract
 
-`$speckit-specify` must persist the active feature directory in:
+`$biokit-specify` must persist the active feature directory in:
 
 ```json
 {
@@ -43,6 +44,20 @@ Downstream skills must resolve the active feature in this order:
 1. Explicit `SPECIFY_FEATURE_DIRECTORY`, when provided.
 2. `.specify/feature.json` `feature_directory`.
 3. Branch-name-based fallback.
+
+## Continuity Distillation Contract
+
+`$biokit-distill` must create or refresh:
+
+```text
+specs/<active-feature>/current-understanding.md
+```
+
+The report must summarize current workflow state, active section or N/A,
+installed refs, packages/tools actually in use, referenced market bundles,
+wrappers, adapters, checks, evidence status, pending tasks, risks, and exact
+next actions. It must not mutate section state, gates, installed refs, task
+state, wrappers, adapters, checks, or evidence.
 
 ## Agent Context Contract
 

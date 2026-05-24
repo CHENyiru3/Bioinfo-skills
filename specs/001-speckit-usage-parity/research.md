@@ -12,22 +12,22 @@ before they are needed.
 Alternatives considered:
 - Full upstream parity for all Spec Kit integrations: rejected because it adds
   broad platform and agent surface unrelated to current Bioinfo-skills usage.
-- Custom Bioinfo-only command names: rejected because the goal is Spec Kit-like
-  user ergonomics.
+- Reusing upstream `$speckit-*` command names: rejected after clarification
+  because Bioinfo-skills must not conflict with an upstream Spec Kit install.
 
-## Decision: Preserve Upstream Codex Skill Layout
+## Decision: Preserve Upstream Codex Skill Layout With BioKit Names
 
-Rationale: Upstream Spec Kit's Codex integration uses
-`.agents/skills/speckit-<name>/SKILL.md`, defaults to skills mode, uses
-`$ARGUMENTS`, and exposes commands as `$speckit-*` in Codex. Bioinfo-skills
-already follows this layout for the core Spec Kit skills, so the least risky
-path is to keep the same names and make their bodies Bioinfo-aware.
+Rationale: Upstream Spec Kit's Codex integration uses the
+`.agents/skills/<command-name>/SKILL.md` layout, defaults to skills mode, and
+uses `$ARGUMENTS`. Bioinfo-skills preserves that layout and phase sequence but
+uses Bioinfo-owned `biokit-*` command names so it can coexist with upstream
+`speckit-*` skills.
 
 Alternatives considered:
-- Add a second Bioinfo-specific command namespace: rejected because it makes
-  users learn two workflows.
-- Rename existing skills: rejected because it breaks Spec Kit mental-model
-  parity.
+- Keep `$speckit-*` as canonical: rejected because it creates namespace
+  collision risk.
+- Add both namespaces as equal first-class commands: rejected because it keeps
+  the collision surface and weakens user guidance.
 
 ## Decision: Use `.specify/feature.json` As The Active Feature Pointer
 
@@ -67,7 +67,7 @@ choices must still be selected through `tool_market/` and copied into
 `sdd/sections/<section_id>/installed_refs/` before becoming active context.
 
 Alternatives considered:
-- Let `$speckit-plan` load all `tool_market/` refs as active context: rejected
+- Let `$biokit-plan` load all `tool_market/` refs as active context: rejected
   because it violates the constitution and bloats context.
 - Put tool refs directly into command skills: rejected because it makes tool
   replacement and evidence weaker.

@@ -6,8 +6,8 @@ gates. Concrete package/API details live under `refs/`, and execution backend
 syntax lives under `execution/adapters/`.
 
 Codex-loadable skills live under `.agents/skills/`. That directory provides the
-Spec Kit-style command surface (`$speckit-constitution`, `$speckit-specify`,
-`$speckit-plan`, `$speckit-tasks`, `$speckit-implement`, and related commands)
+Spec Kit-style command surface (`$biokit-constitution`, `$biokit-specify`,
+`$biokit-plan`, `$biokit-tasks`, `$biokit-distill`, `$biokit-implement`, and related commands)
 plus Bioinfo SDD section helpers such as `bioinfo-sdd-plan-section`.
 
 The public skills in this directory remain the domain guidance tree. The
