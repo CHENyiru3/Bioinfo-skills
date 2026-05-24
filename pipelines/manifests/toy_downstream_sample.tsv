@@ -1,0 +1,2 @@
+sample_id	h5ad_path	description
+clustered_tiny	tests/fixtures/downstream_h5ad/clustered_tiny.h5ad	Intended tiny clustered AnnData fixture for marker-ranking dry-runs.

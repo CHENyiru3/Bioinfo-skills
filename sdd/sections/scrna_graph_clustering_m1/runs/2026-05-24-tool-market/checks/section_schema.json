@@ -1,0 +1,8 @@
+{
+  "check_id": "section_schema",
+  "details": {
+    "errors": []
+  },
+  "status": "pass",
+  "summary": "section schema is valid"
+}

@@ -1,0 +1,45 @@
+schema_version: "0.1.0"
+object_type: AnnData
+x_state: current_working_matrix_not_assumed_raw
+layers:
+  counts:
+    meaning: raw UMI counts when available
+    required_for:
+      - qc_metrics_filtering
+      - doublet_detection
+      - pseudobulk_de
+  log1p_norm:
+    meaning: log-normalized expression when produced
+    required_for:
+      - marker_ranking
+      - signature_scoring
+obs:
+  sample_id:
+    meaning: biological sample or replicate identifier
+    required_for:
+      - pseudobulk_de
+  batch:
+    meaning: technical or processing batch
+    required_for:
+      - batch_integration
+  leiden:
+    meaning: example clustering result key
+    required_for:
+      - marker_ranking
+      - annotation_support
+var:
+  gene_ids:
+    meaning: stable feature identifiers when available
+  gene_symbols:
+    meaning: display gene symbols when available
+obsm:
+  X_pca:
+    meaning: PCA or declared low-dimensional representation
+  X_umap:
+    meaning: UMAP embedding artifact
+uns:
+  neighbors:
+    meaning: neighbor graph metadata
+  bioinfo_skills:
+    meaning: provenance and parameter log owned by this system
+

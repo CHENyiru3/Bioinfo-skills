@@ -1,0 +1,8 @@
+{
+  "check_id": "wrapper_binding",
+  "details": {
+    "wrapper": "wrappers/python/scanpy_neighbors_umap_leiden.py"
+  },
+  "status": "pass",
+  "summary": "wrapper binding exists"
+}

@@ -1,0 +1,19 @@
+{
+  "check_id": "evidence_summary",
+  "details": {
+    "checks": [
+      "adapter_binding.json",
+      "installed_refs.json",
+      "market_manifest.json",
+      "pack_manifest.json",
+      "section_artifacts.json",
+      "section_catalog_links.json",
+      "section_schema.json",
+      "task_slots_filled.json",
+      "wrapper_binding.json"
+    ],
+    "evidence": "sdd/sections/scrna_graph_clustering_m1/evidence.md"
+  },
+  "status": "pass",
+  "summary": "evidence summary recorded for completed deterministic checks"
+}

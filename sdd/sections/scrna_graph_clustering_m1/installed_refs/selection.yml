@@ -1,0 +1,7 @@
+schema_version: 0.1.0
+section_id: scrna_graph_clustering_m1
+active_revision: 20260523T235503Z
+active_bundles:
+- scrna.scverse.bundle.scanpy_graph_clustering.v0
+revisions:
+- 20260523T235503Z

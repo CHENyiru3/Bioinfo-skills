@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "provenance_run_manifest.schema.json",
+  "title": "Provenance Run Manifest",
+  "type": "object",
+  "required": ["schema_version", "run_id", "mode", "tasks", "software_versions"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "run_id": { "type": "string" },
+    "mode": { "type": "string" },
+    "adapter": { "type": "string" },
+    "tasks": { "type": "array" },
+    "inputs": { "type": "array" },
+    "outputs": { "type": "array" },
+    "parameters": { "type": "object" },
+    "software_versions": { "type": "object" },
+    "caveats": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}
+

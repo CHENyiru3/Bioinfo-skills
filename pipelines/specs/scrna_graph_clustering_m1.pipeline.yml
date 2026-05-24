@@ -1,0 +1,59 @@
+schema_version: "0.1.0"
+pipeline_id: scrna_graph_clustering_m1
+section_id: scrna_graph_clustering_m1
+pack_refs:
+  - scrna.scverse.core
+workflow_ref: bioinfo.sdd.workflow.section_default.v0
+task_refs:
+  - scrna.scverse.task.graph_clustering.v0
+stage_ids:
+  - 08_neighbor_graph
+  - 09_embedding_visualization
+  - 10_clustering
+package_refs:
+  - scrna.scverse.package.scanpy
+tool_refs:
+  - scrna.scverse.tool.scanpy_neighbors
+  - scrna.scverse.tool.scanpy_umap
+  - scrna.scverse.tool.scanpy_leiden
+wrapper: wrappers/python/scanpy_neighbors_umap_leiden.py
+adapter: workflow/rules/scrna_graph_clustering.smk
+input_h5ad: tests/fixtures/downstream_h5ad/represented_tiny.h5ad
+outputs:
+  h5ad: runs/graph_clustering_m1/represented_tiny.graph_clustered.h5ad
+  embedding_tsv: runs/graph_clustering_m1/embedding.tsv
+  cluster_sizes_json: runs/graph_clustering_m1/cluster_sizes.json
+  params_json: runs/graph_clustering_m1/resolved_params.json
+  versions_json: runs/graph_clustering_m1/versions.json
+logs:
+  graph_clustering: runs/graph_clustering_m1/logs/graph_clustering.log
+benchmarks:
+  graph_clustering: runs/graph_clustering_m1/benchmarks/graph_clustering.tsv
+params:
+  representation_key: X_pca
+  neighbors_key: neighbors_x_pca
+  embedding_key: X_umap_neighbors_x_pca
+  cluster_key: leiden_neighbors_x_pca
+  n_neighbors: 3
+  n_pcs: 3
+  metric: euclidean
+  neighbors_method: umap
+  umap_min_dist: 0.5
+  umap_spread: 1.0
+  resolution: 0.5
+  random_state: 7
+  leiden_flavor: leidenalg
+  overwrite: false
+claims:
+  allowed:
+    - neighbor graph was constructed from the declared representation
+    - UMAP coordinates were computed from the declared graph
+    - Leiden graph communities were assigned under the recorded parameters
+    - cluster-size summaries correspond to the declared cluster key
+  forbidden:
+    - cell type annotation
+    - condition-level inference
+    - normalization
+    - feature selection
+    - PCA computation
+    - final biological state interpretation

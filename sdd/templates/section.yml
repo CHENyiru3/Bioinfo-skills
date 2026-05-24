@@ -1,0 +1,26 @@
+schema_version: "0.1.0"
+section_id: ${section_id}
+domain: ${domain}
+ecosystem: ${ecosystem}
+pack_refs: []
+workflow_ref: bioinfo.sdd.workflow.section_default.v0
+stage_ids: []
+task_refs: []
+input_state: []
+output_state: []
+skill_refs: []
+package_refs: []
+tool_refs: []
+check_refs: []
+wrapper: null
+adapter: null
+parameters: {}
+expected_artifacts: []
+claims:
+  allowed: []
+  forbidden: []
+gates:
+  spec_review: pending
+  plan_review: pending
+  task_review: pending
+  evidence_acceptance: pending

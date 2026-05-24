@@ -1,0 +1,37 @@
+schema_version: "0.1.0"
+bundle_id: scrna.scverse.bundle.scanpy_marker_ranking.v0
+name: Scanpy marker ranking
+domain: scrna
+ecosystem: scverse
+task_refs:
+  - scrna.scverse.task.marker_ranking.v0
+stage_ids:
+  - 11_marker_ranking
+skill_refs:
+  - scrna.scverse.workflow.marker_ranking
+package_refs:
+  - id: scrna.scverse.package.scanpy
+    path: tool_market/packages/scrna/scverse/scanpy.md
+tool_refs:
+  - id: scrna.scverse.tool.scanpy_rank_genes_groups
+    slot_id: marker_ranking
+    stage_id: 11_marker_ranking
+    method_family: marker_ranking
+    path: tool_market/tools/scrna/scverse/python/scanpy_rank_genes_groups.md
+wrapper: wrappers/python/scanpy_rank_cluster_markers.py
+adapter: workflow/rules/scrna_marker_ranking.smk
+check_refs:
+  - section_schema
+  - section_catalog_links
+  - wrapper_binding
+  - adapter_binding
+  - section_artifacts
+  - installed_refs
+  - task_slots_filled
+allowed_claims:
+  - marker ranking for existing groups
+  - descriptive per-cell group marker table
+forbidden_claims:
+  - condition-level differential expression
+  - replicate-aware inference
+  - cell type annotation certainty

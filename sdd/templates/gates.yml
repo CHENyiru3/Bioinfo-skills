@@ -1,0 +1,15 @@
+schema_version: "0.1.0"
+section_id: ${section_id}
+gates:
+  spec_review:
+    status: pending
+    reason: null
+  plan_review:
+    status: pending
+    reason: null
+  task_review:
+    status: pending
+    reason: null
+  evidence_acceptance:
+    status: pending
+    reason: null

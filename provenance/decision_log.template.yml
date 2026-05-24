@@ -1,0 +1,10 @@
+schema_version: "0.1.0"
+decisions:
+  - id: example_decision
+    question: Which method and parameters were approved?
+    decision: pending
+    alternatives: []
+    rationale: ""
+    approved_by: ""
+    approved_at: null
+

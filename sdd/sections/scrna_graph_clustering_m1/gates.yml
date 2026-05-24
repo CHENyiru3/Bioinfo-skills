@@ -1,0 +1,15 @@
+schema_version: "0.1.0"
+section_id: scrna_graph_clustering_m1
+gates:
+  spec_review:
+    status: approved
+    reason: Accepted by SPEC/bioinfo_native_section_sdd_plan.md as first exemplar.
+  plan_review:
+    status: approved
+    reason: Existing wrapper is bound and adapter-only Snakemake rule is planned.
+  task_review:
+    status: approved
+    reason: Tasks are limited to deterministic structural and dependency-aware execution checks.
+  evidence_acceptance:
+    status: pending
+    reason: Final evidence acceptance remains a review gate.

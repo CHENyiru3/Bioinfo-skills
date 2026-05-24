@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "generated_at": "2026-05-24T01:04:55.867466+00:00",
+  "runtime_profile": "current_python",
+  "packages": [
+    {
+      "package": "scanpy",
+      "distribution": "scanpy",
+      "import_name": "scanpy",
+      "declared_runtime_status": "installed",
+      "ref_path": "tool_market/packages/scrna/scverse/scanpy.md",
+      "version": null,
+      "status": "missing",
+      "failure_reason": "import: ModuleNotFoundError: No module named 'scanpy'",
+      "waiver_reason": null
+    }
+  ]
+}

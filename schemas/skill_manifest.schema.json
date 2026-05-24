@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "skill_manifest.schema.json",
+  "title": "Bioinfo Skill Manifest",
+  "type": "object",
+  "required": ["id", "schema_version", "kind", "domain", "status"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "schema_version": { "type": "string", "minLength": 1 },
+    "kind": { "const": "skill" },
+    "domain": { "type": "string", "minLength": 1 },
+    "stage": { "type": "string" },
+    "status": { "type": "string" },
+    "state_in": { "type": ["array", "object", "string"] },
+    "state_out": { "type": ["array", "object", "string"] },
+    "registered_refs": { "type": "array", "items": { "type": "string" } },
+    "validation": { "type": ["array", "object", "string"] }
+  },
+  "additionalProperties": true
+}
+

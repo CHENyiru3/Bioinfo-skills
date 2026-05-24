@@ -1,0 +1,6 @@
+schema_version: "0.1.0"
+expected_snapshots:
+  - id: qc_metrics_snapshot
+    status: placeholder
+  - id: marker_ranking_snapshot
+    status: placeholder

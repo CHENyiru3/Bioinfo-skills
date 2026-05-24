@@ -1,0 +1,8 @@
+{
+  "check_id": "adapter_binding",
+  "details": {
+    "adapter": "workflow/rules/scrna_graph_clustering.smk"
+  },
+  "status": "pass",
+  "summary": "adapter binding exists"
+}

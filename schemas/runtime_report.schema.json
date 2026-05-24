@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "runtime_report.schema.json",
+  "title": "Runtime Availability Report",
+  "type": "object",
+  "required": ["schema_version", "generated_at", "packages"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "runtime_profile": { "type": "string" },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["package", "status"],
+        "properties": {
+          "package": { "type": "string" },
+          "distribution": { "type": "string" },
+          "import_name": { "type": "string" },
+          "version": { "type": ["string", "null"] },
+          "status": { "type": "string" },
+          "failure_reason": { "type": ["string", "null"] },
+          "waiver_reason": { "type": ["string", "null"] }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

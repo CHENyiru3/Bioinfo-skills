@@ -1,0 +1,33 @@
+configfile: "pipelines/specs/scrna_marker_ranking_m1.pipeline.yml"
+
+if "markers_tsv" in config["outputs"]:
+    include: "rules/scrna_marker_ranking.smk"
+elif "embedding_tsv" in config["outputs"]:
+    include: "rules/scrna_graph_clustering.smk"
+else:
+    raise ValueError("unsupported pipeline config outputs")
+
+
+def output_targets():
+    outputs = config["outputs"]
+    if "markers_tsv" in outputs:
+        return [
+            outputs["h5ad"],
+            outputs["markers_tsv"],
+            outputs["group_sizes_json"],
+            outputs["params_json"],
+            outputs["versions_json"],
+        ]
+    if "embedding_tsv" in outputs:
+        return [
+            outputs["h5ad"],
+            outputs["embedding_tsv"],
+            outputs["cluster_sizes_json"],
+            outputs["params_json"],
+            outputs["versions_json"],
+        ]
+    raise ValueError("unsupported pipeline config outputs")
+
+rule all:
+    input:
+        output_targets()

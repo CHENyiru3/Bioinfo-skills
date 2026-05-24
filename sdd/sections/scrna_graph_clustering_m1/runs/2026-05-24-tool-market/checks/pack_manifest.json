@@ -1,0 +1,11 @@
+{
+  "check_id": "pack_manifest",
+  "details": {
+    "errors": [],
+    "packs": [
+      "sdd/packs/scrna_scverse/pack.yml"
+    ]
+  },
+  "status": "pass",
+  "summary": "pack manifests are valid"
+}
