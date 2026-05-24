@@ -1,0 +1,44 @@
+schema_version: "0.1.0"
+workflow_id: bioinfo.sdd.workflow.section_default.v0
+description: Deterministic local lifecycle for one Bioinfo-skills analysis section.
+steps:
+  - id: validate_section
+    type: validate_section
+  - id: validate_packs
+    type: run_check
+    check: pack_manifest
+  - id: validate_market
+    type: run_check
+    check: market_manifest
+  - id: spec_review
+    type: gate
+    gate: spec_review
+  - id: plan_review
+    type: gate
+    gate: plan_review
+  - id: task_review
+    type: gate
+    gate: task_review
+  - id: installed_refs
+    type: run_check
+    check: installed_refs
+  - id: task_slots_filled
+    type: run_check
+    check: task_slots_filled
+  - id: resolve_catalog_links
+    type: run_check
+    check: section_catalog_links
+  - id: wrapper_binding
+    type: run_check
+    check: wrapper_binding
+  - id: adapter_binding
+    type: run_check
+    check: adapter_binding
+  - id: section_artifacts
+    type: run_check
+    check: section_artifacts
+  - id: record_evidence
+    type: record_evidence
+  - id: evidence_acceptance
+    type: gate
+    gate: evidence_acceptance

@@ -70,12 +70,12 @@ The repository currently has the first scaffold:
 - `SPEC/` architecture documents.
 - `skills/` layered scRNA/scverse skill tree.
 - `skills/scrna/scverse/workflow/00-16/SKILL.md` placeholders.
-- `skills/scrna/scverse/refs/packages/` package reference placeholders.
-- `skills/scrna/scverse/refs/tools/python/` initial Scanpy tool references.
+- `tool_market/packages/` package reference source files.
+- `tool_market/tools/` initial Scanpy tool reference source files.
 - `schemas/` structural schemas.
 - `contracts/` AnnData/scRNA state and statistical policy documents.
 - `execution/adapters/` backend adapter templates.
-- `scripts/` structural validators.
+- `bioinfo-sdd run-check` structural validators.
 - `tests/` structural tests.
 
 The repository does not yet have:
@@ -203,7 +203,7 @@ Must not include:
 
 Definition of done:
 
-- `scripts/validate_skill_tree.py` passes.
+- `bioinfo-sdd run-check skill_tree` passes.
 - `tests/test_backend_neutral_nodes.py` passes.
 - the skill names the relevant refs without overloading the context.
 
@@ -305,7 +305,7 @@ For Snakemake:
 Definition of done:
 
 - `tests/workflow/` dry-run test passes.
-- `scripts/inspect_snakefile_policy.py` exists before complex rules expand.
+- `bioinfo-sdd run-check snakemake_policy` exists before complex rules expand.
 - dry-run evidence appears in a runlog or test output.
 
 ### 4.6 Provenance Fill Unit
@@ -340,7 +340,7 @@ Goal: every content/code addition has a validator target.
 Implement:
 
 - schema validation helper for YAML/JSON frontmatter where feasible
-- `scripts/inspect_snakefile_policy.py`
+- `bioinfo-sdd run-check snakemake_policy`
 - stronger tests for required stage-skill sections
 - stronger tests for package/tool ref required sections
 - fixture manifest validation
@@ -359,9 +359,8 @@ Goal: create a safe read-only entry operation for any future analysis.
 Fill:
 
 - `skills/scrna/scverse/workflow/00_state_inspection/SKILL.md`
-- `skills/scrna/scverse/refs/packages/anndata.md`
-- `skills/scrna/scverse/refs/packages/scanpy.md`
-- `skills/scrna/scverse/refs/tools/python/scanpy_read_h5ad.md`
+- `tool_market/packages/...`
+- `tool_market/tools/...`
 
 Add code:
 
@@ -390,7 +389,7 @@ Goal: implement the first downstream analysis section.
 Fill:
 
 - `skills/scrna/scverse/workflow/11_marker_ranking/SKILL.md`
-- `skills/scrna/scverse/refs/tools/python/scanpy_rank_genes_groups.md`
+- `tool_market/tools/scrna/scverse/python/scanpy_rank_genes_groups.md`
 - method contract for marker ranking
 
 Add code:
@@ -432,9 +431,9 @@ Fill:
 - `skills/scrna/scverse/workflow/08_neighbor_graph/SKILL.md`
 - `skills/scrna/scverse/workflow/09_embedding_visualization/SKILL.md`
 - `skills/scrna/scverse/workflow/10_clustering/SKILL.md`
-- `skills/scrna/scverse/refs/tools/python/scanpy_neighbors.md`
-- `skills/scrna/scverse/refs/tools/python/scanpy_umap.md`
-- `skills/scrna/scverse/refs/tools/python/scanpy_leiden.md`
+- `tool_market/tools/scrna/scverse/python/scanpy_neighbors.md`
+- `tool_market/tools/scrna/scverse/python/scanpy_umap.md`
+- `tool_market/tools/scrna/scverse/python/scanpy_leiden.md`
 
 Add code only after method approval:
 

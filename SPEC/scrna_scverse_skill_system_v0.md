@@ -208,10 +208,9 @@ containers/
     r-seurat.renv.lock.placeholder
 
 scripts/
-  validate_skill_tree.py
   check_scverse_runtime.py
-  check_anndata_contract.py
   render_skill_manifest.py
+  # structural validators are exposed through bioinfo-sdd run-check
 
 provenance/
   run_manifest.template.yml
@@ -357,10 +356,12 @@ These keys keep stages composable without assuming one fixed implementation.
 
 ## 7. Package Reference Contract
 
-Package reference files should live under:
+Package reference files should live under the tool market and be installed into
+section-local `installed_refs/` revisions when selected:
 
 ```text
-skills/scrna/scverse/refs/packages/
+tool_market/packages/
+sdd/sections/<section_id>/installed_refs/
 ```
 
 Minimum frontmatter:
@@ -415,11 +416,12 @@ Runtime status values:
 
 ## 8. Tool Reference Contract
 
-Tool references should live under:
+Tool references should live under the tool market and be installed into
+section-local `installed_refs/` revisions when selected:
 
 ```text
-skills/scrna/scverse/refs/tools/python/
-skills/scrna/scverse/refs/tools/r/
+tool_market/tools/
+sdd/sections/<section_id>/installed_refs/
 ```
 
 Minimum frontmatter:
@@ -1232,10 +1234,10 @@ The contract layer should include:
 
 ## 14. Validation Plan
 
-Future validator:
+Validator:
 
 ```text
-scripts/validate_skill_tree.py
+bioinfo-sdd run-check skill_tree
 ```
 
 Checks:

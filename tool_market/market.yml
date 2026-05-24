@@ -1,0 +1,6 @@
+schema_version: "0.1.0"
+market_id: bioinfo.local.tool_market
+name: Bioinfo-skills local tool market
+bundles:
+  scrna.scverse.bundle.scanpy_graph_clustering.v0: bundles/scrna_scverse/scanpy_graph_clustering.yml
+  scrna.scverse.bundle.scanpy_marker_ranking.v0: bundles/scrna_scverse/scanpy_marker_ranking.yml

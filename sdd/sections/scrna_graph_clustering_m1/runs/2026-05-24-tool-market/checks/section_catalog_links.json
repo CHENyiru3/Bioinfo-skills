@@ -1,0 +1,37 @@
+{
+  "check_id": "section_catalog_links",
+  "details": {
+    "errors": [],
+    "installed_packages": [
+      "scrna.scverse.package.scanpy"
+    ],
+    "installed_tools": [
+      "scrna.scverse.tool.scanpy_neighbors",
+      "scrna.scverse.tool.scanpy_umap",
+      "scrna.scverse.tool.scanpy_leiden"
+    ],
+    "pack_refs": [
+      "scrna.scverse.core"
+    ],
+    "stage_ids": [
+      "08_neighbor_graph",
+      "09_embedding_visualization",
+      "10_clustering"
+    ],
+    "task_checks": [
+      "adapter_binding",
+      "installed_refs",
+      "section_artifacts",
+      "section_catalog_links",
+      "section_schema",
+      "task_slots_filled",
+      "wrapper_binding"
+    ],
+    "task_refs": [
+      "scrna.scverse.task.graph_clustering.v0"
+    ],
+    "workflow_ref": "bioinfo.sdd.workflow.section_default.v0"
+  },
+  "status": "pass",
+  "summary": "section catalog links resolve"
+}

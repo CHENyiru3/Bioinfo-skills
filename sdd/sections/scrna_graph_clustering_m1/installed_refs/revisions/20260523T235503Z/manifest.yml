@@ -1,0 +1,59 @@
+schema_version: 0.1.0
+revision_id: 20260523T235503Z
+section_id: scrna_graph_clustering_m1
+installed_at: '2026-05-23T23:55:03+00:00'
+source_bundles:
+- scrna.scverse.bundle.scanpy_graph_clustering.v0
+task_refs:
+- scrna.scverse.task.graph_clustering.v0
+stage_ids:
+- 08_neighbor_graph
+- 09_embedding_visualization
+- 10_clustering
+skill_refs:
+- scrna.scverse.workflow.neighbor_graph
+- scrna.scverse.workflow.embedding_visualization
+- scrna.scverse.workflow.clustering
+package_refs:
+- scrna.scverse.package.scanpy
+tool_refs:
+- scrna.scverse.tool.scanpy_neighbors
+- scrna.scverse.tool.scanpy_umap
+- scrna.scverse.tool.scanpy_leiden
+packages:
+- id: scrna.scverse.package.scanpy
+  source_path: tool_market/packages/scrna/scverse/scanpy.md
+  installed_path: installed_refs/revisions/20260523T235503Z/packages/scanpy.md
+  sha256: 3f4426ed7378484a1f43ab0279f40000005c471ac8af312c6190b3a47a3666e8
+tools:
+- id: scrna.scverse.tool.scanpy_neighbors
+  source_path: tool_market/tools/scrna/scverse/python/scanpy_neighbors.md
+  installed_path: installed_refs/revisions/20260523T235503Z/tools/scanpy_neighbors.md
+  sha256: 03bdc103e11528fa43fc4ca619454495f2f360b1ab8bdc0d2702356cab930a05
+  slot_id: neighbor_graph
+  stage_id: 08_neighbor_graph
+  method_family: neighbor_graph
+- id: scrna.scverse.tool.scanpy_umap
+  source_path: tool_market/tools/scrna/scverse/python/scanpy_umap.md
+  installed_path: installed_refs/revisions/20260523T235503Z/tools/scanpy_umap.md
+  sha256: f46c01fbefc28dbbcd9ea814770a93e89166353182d66648ff2d889472b01804
+  slot_id: embedding_visualization
+  stage_id: 09_embedding_visualization
+  method_family: graph_embedding
+- id: scrna.scverse.tool.scanpy_leiden
+  source_path: tool_market/tools/scrna/scverse/python/scanpy_leiden.md
+  installed_path: installed_refs/revisions/20260523T235503Z/tools/scanpy_leiden.md
+  sha256: 565262933cf11fa02e97df63b13cd23ba191cff4c5214e0eaea3bd661f82fdca
+  slot_id: clustering
+  stage_id: 10_clustering
+  method_family: graph_clustering
+wrapper: wrappers/python/scanpy_neighbors_umap_leiden.py
+adapter: workflow/rules/scrna_graph_clustering.smk
+check_refs:
+- section_schema
+- section_catalog_links
+- wrapper_binding
+- adapter_binding
+- section_artifacts
+- installed_refs
+- task_slots_filled

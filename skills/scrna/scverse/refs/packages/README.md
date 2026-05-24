@@ -1,3 +1,7 @@
-# Package References
+# Legacy Package Reference Stub
 
-Package-level scverse ecosystem references generated from local manifests. Runtime status is provisional until `scripts/check_scverse_runtime.py` is run.
+Active package references no longer live in this directory.
+
+Use `tool_market/packages/` for inactive source refs and
+`sdd/sections/<section_id>/installed_refs/` for the section-local active refs
+that Codex and validators should load.

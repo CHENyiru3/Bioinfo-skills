@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import os
 import subprocess
 import sys
@@ -6,16 +7,23 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import anndata as ad
-import numpy as np
-import pandas as pd
-import scanpy as sc
+MISSING = [
+    package
+    for package in ["anndata", "numpy", "pandas", "scanpy", "leidenalg", "igraph"]
+    if importlib.util.find_spec(package) is None
+]
+if not MISSING:
+    import anndata as ad
+    import numpy as np
+    import pandas as pd
+    import scanpy as sc
 
 
 ROOT = Path(__file__).resolve().parents[2]
 WRAPPER = ROOT / "wrappers/python/scanpy_neighbors_umap_leiden.py"
 
 
+@unittest.skipIf(MISSING, "missing optional wrapper dependencies: " + ", ".join(MISSING))
 class ScanpyNeighborsUmapLeidenTest(unittest.TestCase):
     def make_fixture(self, path: Path) -> None:
         obs = pd.DataFrame(index=[f"cell{i}" for i in range(10)])

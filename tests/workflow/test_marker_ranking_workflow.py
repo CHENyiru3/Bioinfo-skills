@@ -9,10 +9,15 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+MISSING = [
+    package
+    for package in ["snakemake", "anndata", "numpy", "pandas", "scanpy"]
+    if importlib.util.find_spec(package) is None
+]
 
 
 class MarkerRankingWorkflowTest(unittest.TestCase):
-    @unittest.skipUnless(importlib.util.find_spec("snakemake"), "snakemake is not installed")
+    @unittest.skipIf(MISSING, "missing optional workflow dependencies: " + ", ".join(MISSING))
     def test_marker_ranking_snakemake_execution(self):
         import anndata as ad
         import numpy as np

@@ -21,6 +21,11 @@ workflows are created.
   implementation roadmap for turning scaffolded scverse skills, refs, schemas,
   wrappers, adapter bindings, tests, and provenance into actual working content
   one validated section at a time.
+- [Bioinfo-Native Section SDD Plan](bioinfo_native_section_sdd_plan.md):
+  accepted implementation plan for refactoring Bioinfo-skills into a
+  Codex-first, section-level Spec-Driven Development system with durable
+  section artifacts, local capability packs, gates, run state, checks, and
+  evidence.
 
 ## SPEC Rules
 

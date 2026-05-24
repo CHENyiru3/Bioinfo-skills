@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import os
 import subprocess
 import sys
@@ -6,16 +7,23 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import anndata as ad
-import numpy as np
-import pandas as pd
-from scipy import sparse
+MISSING = [
+    package
+    for package in ["anndata", "numpy", "pandas", "scipy"]
+    if importlib.util.find_spec(package) is None
+]
+if not MISSING:
+    import anndata as ad
+    import numpy as np
+    import pandas as pd
+    from scipy import sparse
 
 
 ROOT = Path(__file__).resolve().parents[2]
 WRAPPER = ROOT / "wrappers/python/inspect_anndata_state.py"
 
 
+@unittest.skipIf(MISSING, "missing optional wrapper dependencies: " + ", ".join(MISSING))
 class InspectAnnDataStateTest(unittest.TestCase):
     def make_fixture(self, path: Path) -> None:
         counts = np.array(

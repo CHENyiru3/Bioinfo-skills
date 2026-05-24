@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate a scverse package availability report from repo-local package refs."""
+"""Generate a scverse package availability report from tool-market package refs."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_DIR = ROOT / "reports/runtime"
-PACKAGE_REFS = ROOT / "skills/scrna/scverse/refs/packages"
+PACKAGE_REFS = ROOT / "tool_market" / "packages"
 
 IMPORT_ALIASES = {
     "scvi_tools": "scvi",
@@ -46,7 +46,7 @@ def frontmatter(path: Path) -> dict[str, str]:
 
 def packages() -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
-    for ref in sorted(PACKAGE_REFS.glob("*.md")):
+    for ref in sorted(PACKAGE_REFS.glob("**/*.md")):
         if ref.name == "README.md":
             continue
         meta = frontmatter(ref)

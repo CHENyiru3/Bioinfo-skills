@@ -1,0 +1,26 @@
+{
+  "completed_steps": [
+    "validate_section",
+    "validate_packs",
+    "validate_market",
+    "spec_review",
+    "plan_review",
+    "task_review",
+    "installed_refs",
+    "task_slots_filled",
+    "resolve_catalog_links",
+    "wrapper_binding",
+    "adapter_binding",
+    "section_artifacts",
+    "record_evidence"
+  ],
+  "current_step_index": 13,
+  "paused_gate": "evidence_acceptance",
+  "paused_step": "evidence_acceptance",
+  "run_id": "2026-05-24-tool-market",
+  "schema_version": "0.1.0",
+  "section_id": "scrna_graph_clustering_m1",
+  "status": "paused",
+  "updated_at": "2026-05-23T23:55:49+00:00",
+  "workflow_id": "bioinfo.sdd.workflow.section_default.v0"
+}

@@ -1,0 +1,76 @@
+schema_version: "0.1.0"
+pack_id: scrna.scverse.core
+name: scRNA scverse core pack
+domain: scrna
+ecosystems:
+  - scverse
+catalogs:
+  stage_skills:
+    - skills/scrna/scverse/workflow/*/SKILL.md
+workflows:
+  bioinfo.sdd.workflow.section_default.v0: sdd/workflows/section-sdd.yml
+task_templates:
+  scrna.scverse.task.graph_clustering.v0:
+    stages:
+      - 08_neighbor_graph
+      - 09_embedding_visualization
+      - 10_clustering
+    skills:
+      - scrna.scverse.workflow.neighbor_graph
+      - scrna.scverse.workflow.embedding_visualization
+      - scrna.scverse.workflow.clustering
+    tool_slots:
+      - slot_id: neighbor_graph
+        stage_id: 08_neighbor_graph
+        method_family: neighbor_graph
+      - slot_id: embedding_visualization
+        stage_id: 09_embedding_visualization
+        method_family: graph_embedding
+      - slot_id: clustering
+        stage_id: 10_clustering
+        method_family: graph_clustering
+    checks:
+      - section_schema
+      - section_catalog_links
+      - wrapper_binding
+      - adapter_binding
+      - section_artifacts
+      - installed_refs
+      - task_slots_filled
+  scrna.scverse.task.marker_ranking.v0:
+    stages:
+      - 11_marker_ranking
+    skills:
+      - scrna.scverse.workflow.marker_ranking
+    tool_slots:
+      - slot_id: marker_ranking
+        stage_id: 11_marker_ranking
+        method_family: marker_ranking
+    checks:
+      - section_schema
+      - section_catalog_links
+      - wrapper_binding
+      - adapter_binding
+      - section_artifacts
+      - installed_refs
+      - task_slots_filled
+checks:
+  - section_schema
+  - section_artifacts
+  - section_catalog_links
+  - pack_manifest
+  - wrapper_binding
+  - adapter_binding
+  - anndata_contract
+  - backend_neutral
+  - snakemake_policy
+  - runtime_report
+  - skill_tree
+  - market_manifest
+  - installed_refs
+  - task_slots_filled
+codex_skills:
+  spec: .agents/skills/bioinfo-sdd-spec-section/SKILL.md
+  plan: .agents/skills/bioinfo-sdd-plan-section/SKILL.md
+  tasks: .agents/skills/bioinfo-sdd-tasks-section/SKILL.md
+  evidence: .agents/skills/bioinfo-sdd-evidence-section/SKILL.md

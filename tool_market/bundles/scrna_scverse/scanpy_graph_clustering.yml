@@ -1,0 +1,55 @@
+schema_version: "0.1.0"
+bundle_id: scrna.scverse.bundle.scanpy_graph_clustering.v0
+name: Scanpy graph clustering
+domain: scrna
+ecosystem: scverse
+task_refs:
+  - scrna.scverse.task.graph_clustering.v0
+stage_ids:
+  - 08_neighbor_graph
+  - 09_embedding_visualization
+  - 10_clustering
+skill_refs:
+  - scrna.scverse.workflow.neighbor_graph
+  - scrna.scverse.workflow.embedding_visualization
+  - scrna.scverse.workflow.clustering
+package_refs:
+  - id: scrna.scverse.package.scanpy
+    path: tool_market/packages/scrna/scverse/scanpy.md
+tool_refs:
+  - id: scrna.scverse.tool.scanpy_neighbors
+    slot_id: neighbor_graph
+    stage_id: 08_neighbor_graph
+    method_family: neighbor_graph
+    path: tool_market/tools/scrna/scverse/python/scanpy_neighbors.md
+  - id: scrna.scverse.tool.scanpy_umap
+    slot_id: embedding_visualization
+    stage_id: 09_embedding_visualization
+    method_family: graph_embedding
+    path: tool_market/tools/scrna/scverse/python/scanpy_umap.md
+  - id: scrna.scverse.tool.scanpy_leiden
+    slot_id: clustering
+    stage_id: 10_clustering
+    method_family: graph_clustering
+    path: tool_market/tools/scrna/scverse/python/scanpy_leiden.md
+wrapper: wrappers/python/scanpy_neighbors_umap_leiden.py
+adapter: workflow/rules/scrna_graph_clustering.smk
+check_refs:
+  - section_schema
+  - section_catalog_links
+  - wrapper_binding
+  - adapter_binding
+  - section_artifacts
+  - installed_refs
+  - task_slots_filled
+allowed_claims:
+  - neighbor graph was constructed from the declared representation
+  - UMAP coordinates were computed from the declared graph
+  - Leiden graph communities were assigned under the recorded parameters
+forbidden_claims:
+  - cell type annotation
+  - condition-level inference
+  - normalization
+  - feature selection
+  - PCA computation
+  - final biological state interpretation

@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ScverseManifestCoverageTest(unittest.TestCase):
-    def test_repo_local_package_refs_have_required_frontmatter(self):
-        refs = sorted((ROOT / "skills/scrna/scverse/refs/packages").glob("*.md"))
+    def test_market_package_refs_have_required_frontmatter(self):
+        refs = sorted((ROOT / "tool_market/packages").glob("**/*.md"))
         self.assertTrue(refs)
         offenders = []
         for ref in refs:
@@ -31,12 +31,12 @@ class ScverseManifestCoverageTest(unittest.TestCase):
         self.assertIn("packages", report)
         self.assertIsInstance(report["packages"], list)
 
-    def test_runtime_report_matches_repo_local_package_refs(self):
+    def test_runtime_report_matches_market_package_refs(self):
         report = json.loads((ROOT / "reports/runtime/scverse_runtime_status.json").read_text())
         reported = {row["package"] for row in report["packages"]}
         refs = {
             ref.stem
-            for ref in (ROOT / "skills/scrna/scverse/refs/packages").glob("*.md")
+            for ref in (ROOT / "tool_market/packages").glob("**/*.md")
             if ref.name != "README.md"
         }
         self.assertEqual(reported, refs)

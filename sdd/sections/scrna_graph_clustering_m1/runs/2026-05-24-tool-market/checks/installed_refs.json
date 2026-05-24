@@ -1,0 +1,12 @@
+{
+  "check_id": "installed_refs",
+  "details": {
+    "active_bundles": [
+      "scrna.scverse.bundle.scanpy_graph_clustering.v0"
+    ],
+    "active_revision": "20260523T235503Z",
+    "errors": []
+  },
+  "status": "pass",
+  "summary": "installed refs are valid"
+}

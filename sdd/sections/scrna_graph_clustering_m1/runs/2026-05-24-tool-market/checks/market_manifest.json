@@ -1,0 +1,8 @@
+{
+  "check_id": "market_manifest",
+  "details": {
+    "errors": []
+  },
+  "status": "pass",
+  "summary": "tool market manifest is valid"
+}
