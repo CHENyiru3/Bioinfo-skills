@@ -1,0 +1,45 @@
+schema_version: "0.1.0"
+contract_id: seurat_object_state_v0
+object_type: Seurat
+paths:
+  accepted_extensions: [.rds, .qs, .h5seurat]
+assays:
+  required_fields:
+    - assay_name
+    - layer_names
+    - feature_count
+    - cell_count
+  common_assays: [RNA, SCT, ADT, ATAC, Spatial]
+layers:
+  count_like: [counts]
+  normalized_like: [data]
+  scaled_like: [scale.data]
+reductions:
+  examples: [pca, umap, harmony, integrated.cca, integrated.rpca]
+graphs:
+  examples: [RNA_nn, RNA_snn, SCT_nn, SCT_snn]
+metadata:
+  required_for_design:
+    - sample_id
+    - batch
+    - condition
+    - cluster_key
+identities:
+  policy: "Do not overwrite Idents(object) without recording the source metadata column and previous identity state."
+provenance:
+  required:
+    - package_versions
+    - active_assay
+    - input_assay
+    - input_layer
+    - output_keys
+    - parameters
+    - random_seed
+    - replacement_policy
+validation:
+  - object loads successfully
+  - assays and layers are enumerated
+  - reductions have one row per cell
+  - graphs are square and cell-aligned
+  - metadata columns have one value per cell
+  - output keys are absent unless replacement is approved

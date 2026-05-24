@@ -1,0 +1,27 @@
+name: bioinfo-skills-r-seurat-optional
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - r-base=4.4
+  - r-seurat
+  - r-signac
+  - r-reticulate
+  - r-plotly
+  - r-remotes
+  - r-devtools
+  - r-ggrepel
+  - r-reshape2
+  - r-scales
+  - git
+  # Source-route packages handled by scripts/install_seurat_source_packages.R
+  # and pinned in containers/lockfiles/r-seurat-source-packages.tsv:
+  # - SeuratData
+  # - SeuratWrappers
+  # - Azimuth
+  # - SeuratDisk
+  # - spacexr
+  # - Banksy
+  # - Rfast2
+  # - ATAC genome annotation packages

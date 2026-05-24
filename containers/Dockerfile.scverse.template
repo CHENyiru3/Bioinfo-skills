@@ -3,8 +3,10 @@
 FROM mambaorg/micromamba:latest
 
 COPY envs/scverse-python.yml /tmp/scverse-python.yml
-RUN micromamba install -y -n base -f /tmp/scverse-python.yml && micromamba clean -a -y
+COPY envs/r-seurat.yml /tmp/r-seurat.yml
+RUN micromamba install -y -n base -f /tmp/scverse-python.yml \
+    && micromamba install -y -n base -f /tmp/r-seurat.yml \
+    && micromamba clean -a -y
 
 SHELL ["/bin/bash", "-lc"]
-CMD ["python", "-c", "import scanpy as sc; print(sc.__version__)"]
-
+CMD ["bash", "-lc", "python -c 'import scanpy as sc; print(sc.__version__)' && R -q -e 'library(Seurat); packageVersion(\"Seurat\")'"]

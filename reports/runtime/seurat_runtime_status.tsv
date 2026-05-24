@@ -1,0 +1,13 @@
+package	import_name	declared_runtime_status	runtime_required	install_route	ref_path	version	status	failure_reason	waiver_reason
+Azimuth	Azimuth	installed	optional	source	tool_market/packages/scrna/seurat/azimuth.md	0.5.1	installed	NA	NA
+BPCells	BPCells	installed	required	unknown	tool_market/packages/scrna/seurat/bpcells.md	0.3.1	installed	NA	NA
+glmGamPoi	glmGamPoi	installed	required	unknown	tool_market/packages/scrna/seurat/glmgampoi.md	1.18.0	installed	NA	NA
+harmony	harmony	installed	required	unknown	tool_market/packages/scrna/seurat/harmony.md	2.0.2	installed	NA	NA
+presto	presto	installed	required	unknown	tool_market/packages/scrna/seurat/presto.md	1.0.0	installed	NA	NA
+sctransform	sctransform	installed	required	unknown	tool_market/packages/scrna/seurat/sctransform.md	0.4.3	installed	NA	NA
+Seurat	Seurat	installed	required	unknown	tool_market/packages/scrna/seurat/seurat.md	5.5.0	installed	NA	NA
+SeuratData	SeuratData	installed	optional	source	tool_market/packages/scrna/seurat/seuratdata.md	0.2.2.9002	installed	NA	NA
+SeuratDisk	SeuratDisk	installed	optional	source	tool_market/packages/scrna/seurat/seuratdisk.md	0.0.0.9021	installed	NA	NA
+SeuratObject	SeuratObject	installed	required	unknown	tool_market/packages/scrna/seurat/seuratobject.md	5.4.0	installed	NA	NA
+SeuratWrappers	SeuratWrappers	installed	optional	source	tool_market/packages/scrna/seurat/seuratwrappers.md	0.4.0	installed	NA	NA
+Signac	Signac	installed	required	unknown	tool_market/packages/scrna/seurat/signac.md	1.16.0	installed	NA	NA

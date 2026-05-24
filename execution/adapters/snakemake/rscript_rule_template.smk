@@ -9,7 +9,7 @@ rule example_rscript_task:
     benchmark:
         "benchmarks/example_rscript_task.tsv"
     conda:
-        "envs/r-seurat-placeholder.yml"
+        "envs/r-seurat.yml"
     params:
         params_json="{params_json}"
     shell:

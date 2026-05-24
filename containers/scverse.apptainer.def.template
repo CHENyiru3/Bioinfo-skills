@@ -3,11 +3,12 @@ From: mambaorg/micromamba:latest
 
 %files
     envs/scverse-python.yml /tmp/scverse-python.yml
+    envs/r-seurat.yml /tmp/r-seurat.yml
 
 %post
     micromamba install -y -n base -f /tmp/scverse-python.yml
+    micromamba install -y -n base -f /tmp/r-seurat.yml
     micromamba clean -a -y
 
 %runscript
     python "$@"
-

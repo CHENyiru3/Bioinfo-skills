@@ -336,14 +336,70 @@ def check_backend_neutral(root: Path, _section_dir: Path | None = None) -> Check
         r"^\s*process\s+\w+",
     ]
     offenders: list[str] = []
-    for path in (root / "skills/scrna/scverse/workflow").glob("*/SKILL.md"):
-        text = path.read_text(encoding="utf-8")
-        for pattern in patterns:
-            if re.search(pattern, text, flags=re.MULTILINE):
-                offenders.append(f"{path}: {pattern}")
+    workflow_roots = [
+        root / "skills/scrna/scverse/workflow",
+        root / "skills/scrna/seurat/workflow",
+    ]
+    for workflow_root in workflow_roots:
+        if not workflow_root.exists():
+            continue
+        paths = workflow_root.glob("*/SKILL.md")
+        for path in paths:
+            text = path.read_text(encoding="utf-8")
+            for pattern in patterns:
+                if re.search(pattern, text, flags=re.MULTILINE):
+                    offenders.append(f"{path}: {pattern}")
     status = "pass" if not offenders else "fail"
     summary = "workflow skills are backend-neutral" if not offenders else "workflow skills contain backend syntax"
     return CheckResult("backend_neutral", status, summary, {"offenders": offenders})
+
+
+def _runtime_ref_stems(root: Path, *, language: str, ecosystem: str) -> set[str]:
+    refs: set[str] = set()
+    for ref in market_package_ref_paths(root):
+        try:
+            meta = _frontmatter(ref)
+        except ValueError:
+            continue
+        if meta.get("language") == language and meta.get("ecosystem") == ecosystem:
+            refs.add(ref.stem)
+    return refs
+
+
+def _check_runtime_report_file(
+    root: Path,
+    rel_path: str,
+    *,
+    language: str,
+    ecosystem: str,
+) -> list[str]:
+    report_path = root / rel_path
+    errors: list[str] = []
+    try:
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        return [f"{rel_path}: unreadable: {exc}"]
+    for key in ["schema_version", "generated_at", "packages"]:
+        if key not in report:
+            errors.append(f"{rel_path}: missing key: {key}")
+    reported = {
+        str(row.get("ref_path", "")).rsplit("/", 1)[-1].removesuffix(".md")
+        for row in report.get("packages", [])
+        if row.get("ref_path")
+    }
+    for row in report.get("packages", []):
+        status = row.get("status")
+        declared = row.get("declared_runtime_status")
+        waiver = row.get("waiver_reason")
+        package = row.get("package")
+        if declared == "installed" and status != "installed":
+            errors.append(f"{rel_path}: {package} is declared installed but probe status is {status}")
+        if status == "missing" and declared not in {"missing", "optional_missing"} and not waiver:
+            errors.append(f"{rel_path}: {package} is missing without an optional/source waiver")
+    refs = _runtime_ref_stems(root, language=language, ecosystem=ecosystem)
+    if reported != refs:
+        errors.append(f"{rel_path}: packages do not match {language}/{ecosystem} package refs")
+    return errors
 
 
 @register_check("snakemake_policy")
@@ -383,21 +439,25 @@ def check_snakemake_policy(root: Path, _section_dir: Path | None = None) -> Chec
 
 @register_check("runtime_report")
 def check_runtime_report(root: Path, _section_dir: Path | None = None) -> CheckResult:
-    report_path = root / "reports/runtime/scverse_runtime_status.json"
-    try:
-        report = json.loads(report_path.read_text(encoding="utf-8"))
-    except Exception as exc:
-        return CheckResult("runtime_report", "fail", "runtime report is unreadable", {"error": str(exc)})
-    reported = {row.get("package") for row in report.get("packages", [])}
-    refs = {ref.stem for ref in market_package_ref_paths(root)}
     errors: list[str] = []
-    for key in ["schema_version", "generated_at", "packages"]:
-        if key not in report:
-            errors.append(f"missing key: {key}")
-    if reported != refs:
-        errors.append("runtime report packages do not match package refs")
+    errors.extend(
+        _check_runtime_report_file(
+            root,
+            "reports/runtime/scverse_runtime_status.json",
+            language="python",
+            ecosystem="scverse",
+        )
+    )
+    errors.extend(
+        _check_runtime_report_file(
+            root,
+            "reports/runtime/seurat_runtime_status.json",
+            language="r",
+            ecosystem="seurat",
+        )
+    )
     status = "pass" if not errors else "fail"
-    summary = "runtime report is schema-shaped and matches market package refs" if not errors else "runtime report has errors"
+    summary = "runtime reports are schema-shaped and match package refs" if not errors else "runtime report has errors"
     return CheckResult("runtime_report", status, summary, {"errors": errors})
 
 
@@ -414,11 +474,15 @@ def check_skill_tree(root: Path, _section_dir: Path | None = None) -> CheckResul
         "SPEC/README.md",
         "SPEC/skill_system_core_workflow.md",
         "SPEC/scrna_scverse_skill_system_v0.md",
+        "SPEC/environment_transferability_and_version_traceability.md",
+        "SPEC/seurat_r_package_support_plan.md",
         "schemas/skill_manifest.schema.json",
         "contracts/anndata_scrna_state_v0.yml",
+        "contracts/seurat_object_state_v0.yml",
         "skills/entry/SKILL.md",
         "skills/scrna/SKILL.md",
         "skills/scrna/scverse/SKILL.md",
+        "skills/scrna/seurat/SKILL.md",
         "execution/adapters/snakemake/python_rule_template.smk",
         "execution/adapters/snakemake/rscript_rule_template.smk",
         "reports/runtime/README.md",
@@ -504,6 +568,47 @@ def check_skill_tree(root: Path, _section_dir: Path | None = None) -> CheckResul
         skill = root / f"skills/scrna/scverse/workflow/{stage}/SKILL.md"
         if not skill.exists():
             errors.append(f"missing stage skill: {stage}")
+            continue
+        try:
+            meta = _frontmatter(skill)
+        except ValueError as exc:
+            errors.append(str(exc))
+            continue
+        for key in ["id", "schema_version", "kind", "domain", "stage", "status"]:
+            if key not in meta:
+                errors.append(f"{skill}: missing frontmatter key {key}")
+        body = skill.read_text(encoding="utf-8")
+        for pattern in backend_syntax:
+            if re.search(pattern, body, flags=re.MULTILINE):
+                errors.append(f"{skill}: contains backend syntax matching {pattern}")
+        if meta.get("status") == "filled":
+            _require_sections(skill, body, filled_stage_sections, errors)
+            _reject_placeholder_phrases(skill, body, errors)
+            refs = _inline_list(meta.get("registered_refs"))
+            if not refs:
+                errors.append(f"{skill}: filled stage must declare registered_refs")
+
+    seurat_stages = [
+        "00_state_inspection",
+        "01_data_ingest",
+        "02_qc_metrics_filtering",
+        "04_normalization_transform",
+        "05_feature_selection",
+        "06_dimensionality_reduction",
+        "07_batch_integration",
+        "08_neighbor_graph",
+        "09_embedding_visualization",
+        "10_clustering",
+        "11_marker_ranking",
+        "12_annotation_support",
+        "13_signature_scoring",
+        "14_aggregation_pseudobulk_de",
+        "16_specialized_ecosystem",
+    ]
+    for stage in seurat_stages:
+        skill = root / f"skills/scrna/seurat/workflow/{stage}/SKILL.md"
+        if not skill.exists():
+            errors.append(f"missing Seurat stage skill: {stage}")
             continue
         try:
             meta = _frontmatter(skill)

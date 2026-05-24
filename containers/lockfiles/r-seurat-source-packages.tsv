@@ -1,0 +1,5 @@
+package	version	repository	ref	commit	archive_url	install_script	status	captured_at
+SeuratData	0.2.2.9002	satijalab/seurat-data	main	3e51f44303069b64f5dc4d68e6a3d4a343f55c39	https://github.com/satijalab/seurat-data/archive/3e51f44303069b64f5dc4d68e6a3d4a343f55c39.tar.gz	scripts/install_seurat_source_packages.R	installed	2026-05-24T08:29:01Z
+SeuratWrappers	0.4.0	satijalab/seurat-wrappers	master	ffaf74e306279b1ec16e31c9cb2142ebb2bc4bc1	https://github.com/satijalab/seurat-wrappers/archive/ffaf74e306279b1ec16e31c9cb2142ebb2bc4bc1.tar.gz	scripts/install_seurat_source_packages.R	installed	2026-05-24T08:29:01Z
+SeuratDisk	0.0.0.9021	mojaveazure/seurat-disk	master	877d4e18ab38c686f5db54f8cd290274ccdbe295	https://github.com/mojaveazure/seurat-disk/archive/877d4e18ab38c686f5db54f8cd290274ccdbe295.tar.gz	scripts/install_seurat_source_packages.R	installed	2026-05-24T08:29:01Z
+Azimuth	0.5.1	satijalab/azimuth	master	ad5929686e005ae91d8452187a3a1d8c0563fdd5	https://github.com/satijalab/azimuth/archive/ad5929686e005ae91d8452187a3a1d8c0563fdd5.tar.gz	scripts/install_seurat_source_packages.R	installed	2026-05-24T08:29:01Z

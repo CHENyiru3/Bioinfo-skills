@@ -1,0 +1,7 @@
+name: bioinfo-skills-lock-tools
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - conda-lock
+  - conda
