@@ -1,3 +1,12 @@
+---
+name: "bioinfo-sdd-evidence-section"
+description: "Create or revise Bioinfo-skills analysis section evidence reports."
+compatibility: "Bioinfo-skills section SDD; Linux/Codex"
+metadata:
+  author: "bioinfo-skills"
+  source: "SPEC/bioinfo_native_section_sdd_plan.md"
+---
+
 # Bioinfo SDD Evidence Section
 
 Use this skill when creating or revising `evidence.md` for a Bioinfo-skills

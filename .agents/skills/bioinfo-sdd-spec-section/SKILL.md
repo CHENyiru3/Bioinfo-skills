@@ -1,3 +1,12 @@
+---
+name: "bioinfo-sdd-spec-section"
+description: "Create or revise Bioinfo-skills analysis section specifications and section.yml contracts."
+compatibility: "Bioinfo-skills section SDD; Linux/Codex"
+metadata:
+  author: "bioinfo-skills"
+  source: "SPEC/bioinfo_native_section_sdd_plan.md"
+---
+
 # Bioinfo SDD Spec Section
 
 Use this skill when creating or revising `spec.md` and `section.yml` for a
