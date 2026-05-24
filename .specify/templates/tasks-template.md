@@ -9,7 +9,7 @@ artifacts under `sdd/sections/[section_id]/` when applicable.
 
 **Prerequisites**: plan.md, spec.md, `.specify/memory/constitution.md`, and any
 relevant `section.yml`, `gates.yml`, pack manifests, installed refs, wrappers,
-adapters, contracts, and tool refs.
+adapters, contracts, tool refs, and `bioinfo_tool` context.
 
 **Validation**: Include deterministic tests or `bioinfo-sdd` checks for changed
 schemas, packs, section contracts, wrappers, adapters, CLI behavior, and
@@ -69,7 +69,7 @@ infrastructure change.
 - [ ] T010 [Plan] List candidate bundles with
   `PYTHONPATH=src python -m bioinfo_sdd market-list --task-ref [task_ref]`.
 - [ ] T011 [Plan] Install or replace the selected bundle into
-  section-local `installed_refs/`.
+  section-local `installed_refs/` before treating `bioinfo_tool` refs as active.
 - [ ] T012 [Plan] Update plan artifacts with wrapper, adapter, high-impact
   parameters, keys written, overwrite policy, checks, and caveats.
 - [ ] T013 [Review] Obtain or document `plan_review` status in gates.

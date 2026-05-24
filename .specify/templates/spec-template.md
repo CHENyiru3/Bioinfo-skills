@@ -68,7 +68,7 @@ gate review that proves this scenario independently.]
 - Required gates: `spec_review`, `plan_review`, `task_review`,
   `evidence_acceptance`
 - Required refs: `pack_refs`, `workflow_ref`, `task_refs`, `skill_refs`,
-  `package_refs`, `tool_refs`, `check_refs`
+  `package_refs`, `tool_refs`, `bioinfo_tool`, `check_refs`
 
 ### Required Input State
 
@@ -98,7 +98,7 @@ gate review that proves this scenario independently.]
 - **FR-003**: The system MUST resolve pack, workflow, task, package, tool,
   wrapper, adapter, and check refs through declared local manifests.
 - **FR-004**: The system MUST use section-local `installed_refs/` for active
-  package and tool context.
+  package, tool, and `bioinfo_tool` context.
 - **FR-005**: The system MUST record allowed claims, forbidden claims, expected
   artifacts, gate status, and validation evidence.
 

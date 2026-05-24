@@ -15,9 +15,9 @@
 
 **Purpose**: Confirm the active feature context and source references before changing repository behavior.
 
-- [ ] T001 Read `.specify/memory/constitution.md`, `specs/001-speckit-usage-parity/spec.md`, `specs/001-speckit-usage-parity/plan.md`, `specs/001-speckit-usage-parity/research.md`, `specs/001-speckit-usage-parity/data-model.md`, `specs/001-speckit-usage-parity/contracts/linux-codex-skill-workflow.md`, and `specs/001-speckit-usage-parity/quickstart.md` to confirm acceptance criteria.
-- [ ] T002 Inspect `/home/heybro/mnt/workspace/spec-kit/src/specify_cli/integrations/codex/__init__.py` and `.agents/skills/` to confirm current Spec Kit Codex skill layout and local Bioinfo skill layout.
-- [ ] T003 Verify `.specify/feature.json` points to `specs/001-speckit-usage-parity` and that `AGENTS.md` references `specs/001-speckit-usage-parity/plan.md`.
+- [X] T001 Read `.specify/memory/constitution.md`, `specs/001-speckit-usage-parity/spec.md`, `specs/001-speckit-usage-parity/plan.md`, `specs/001-speckit-usage-parity/research.md`, `specs/001-speckit-usage-parity/data-model.md`, `specs/001-speckit-usage-parity/contracts/linux-codex-skill-workflow.md`, and `specs/001-speckit-usage-parity/quickstart.md` to confirm acceptance criteria.
+- [X] T002 Inspect `/home/heybro/mnt/workspace/spec-kit/src/specify_cli/integrations/codex/__init__.py` and `.agents/skills/` to confirm current Spec Kit Codex skill layout and local Bioinfo skill layout.
+- [X] T003 Verify `.specify/feature.json` points to `specs/001-speckit-usage-parity` and that `AGENTS.md` references `specs/001-speckit-usage-parity/plan.md`.
 
 ---
 
@@ -25,11 +25,11 @@
 
 **Purpose**: Add or tighten repository-level checks that protect the workflow contract before implementation changes.
 
-- [ ] T004 Create or extend `tests/test_codex_skill_contract.py` to assert all required core skills exist under `.agents/skills/speckit-*/SKILL.md` with YAML frontmatter.
-- [ ] T005 Extend `tests/test_codex_skill_contract.py` to assert `.specify/feature.json` resolves to an existing feature directory containing `spec.md`, `plan.md`, and `tasks.md`.
-- [ ] T006 Extend `tests/test_codex_skill_contract.py` to assert `AGENTS.md` contains the Spec Kit marker block and references the active plan path `specs/001-speckit-usage-parity/plan.md`.
-- [ ] T007 Create or extend `tests/test_bioinfo_sdd_contract.py` to assert Bioinfo SDD templates and plans preserve `section.yml`, `installed_refs`, `tool_market`, `bioinfo_tool`, and evidence/report gate terminology.
-- [ ] T008 Extend `tests/test_bioinfo_sdd_contract.py` to assert `.agents/skills/bioinfo-sdd-spec-section/SKILL.md`, `.agents/skills/bioinfo-sdd-plan-section/SKILL.md`, `.agents/skills/bioinfo-sdd-tasks-section/SKILL.md`, and `.agents/skills/bioinfo-sdd-evidence-section/SKILL.md` contain valid YAML frontmatter.
+- [X] T004 Create or extend `tests/test_codex_skill_contract.py` to assert all required core skills exist under `.agents/skills/speckit-*/SKILL.md` with YAML frontmatter.
+- [X] T005 Extend `tests/test_codex_skill_contract.py` to assert `.specify/feature.json` resolves to an existing feature directory containing `spec.md`, `plan.md`, and `tasks.md`.
+- [X] T006 Extend `tests/test_codex_skill_contract.py` to assert `AGENTS.md` contains the Spec Kit marker block and references the active plan path `specs/001-speckit-usage-parity/plan.md`.
+- [X] T007 Create or extend `tests/test_bioinfo_sdd_contract.py` to assert Bioinfo SDD templates and plans preserve `section.yml`, `installed_refs`, `tool_market`, `bioinfo_tool`, and evidence/report gate terminology.
+- [X] T008 Extend `tests/test_bioinfo_sdd_contract.py` to assert `.agents/skills/bioinfo-sdd-spec-section/SKILL.md`, `.agents/skills/bioinfo-sdd-plan-section/SKILL.md`, `.agents/skills/bioinfo-sdd-tasks-section/SKILL.md`, and `.agents/skills/bioinfo-sdd-evidence-section/SKILL.md` contain valid YAML frontmatter.
 
 **Checkpoint**: Contract tests are present and expected to fail only where implementation is incomplete.
 
@@ -41,13 +41,13 @@
 
 **Independent Test**: From the repository root, inspect `.agents/skills/speckit-*/SKILL.md`, `.specify/feature.json`, and `AGENTS.md`; each command skill should have valid frontmatter, discover the active feature without branch-name dependence, and point Codex to the active plan.
 
-- [ ] T009 [US1] Update `.agents/skills/speckit-constitution/SKILL.md` to preserve Spec Kit command ergonomics while generating the Bioinfo SDD constitution.
-- [ ] T010 [US1] Update `.agents/skills/speckit-specify/SKILL.md` to preserve Spec Kit command ergonomics while creating Bioinfo SDD feature specifications and contracts.
-- [ ] T011 [US1] Update `.agents/skills/speckit-plan/SKILL.md` to preserve Spec Kit command ergonomics while producing Bioinfo SDD implementation plans and section design artifacts.
-- [ ] T012 [US1] Update `.agents/skills/speckit-tasks/SKILL.md` to preserve Spec Kit command ergonomics while producing dependency-ordered Bioinfo SDD task lists.
-- [ ] T013 [US1] Update `.agents/skills/speckit-implement/SKILL.md` to preserve Spec Kit command ergonomics while executing `tasks.md` through Codex.
-- [ ] T014 [US1] Update `.specify/scripts/bash/common.sh` and `.specify/scripts/bash/setup-plan.sh` so active feature discovery uses `.specify/feature.json` before any git branch fallback.
-- [ ] T015 [US1] Update `.specify/templates/spec-template.md`, `.specify/templates/plan-template.md`, and `.specify/templates/tasks-template.md` so generated artifacts keep Spec Kit file names while using Bioinfo SDD section language.
+- [X] T009 [US1] Update `.agents/skills/speckit-constitution/SKILL.md` to preserve Spec Kit command ergonomics while generating the Bioinfo SDD constitution.
+- [X] T010 [US1] Update `.agents/skills/speckit-specify/SKILL.md` to preserve Spec Kit command ergonomics while creating Bioinfo SDD feature specifications and contracts.
+- [X] T011 [US1] Update `.agents/skills/speckit-plan/SKILL.md` to preserve Spec Kit command ergonomics while producing Bioinfo SDD implementation plans and section design artifacts.
+- [X] T012 [US1] Update `.agents/skills/speckit-tasks/SKILL.md` to preserve Spec Kit command ergonomics while producing dependency-ordered Bioinfo SDD task lists.
+- [X] T013 [US1] Update `.agents/skills/speckit-implement/SKILL.md` to preserve Spec Kit command ergonomics while executing `tasks.md` through Codex.
+- [X] T014 [US1] Update `.specify/scripts/bash/common.sh` and `.specify/scripts/bash/setup-plan.sh` so active feature discovery uses `.specify/feature.json` before any git branch fallback.
+- [X] T015 [US1] Update `.specify/templates/spec-template.md`, `.specify/templates/plan-template.md`, and `.specify/templates/tasks-template.md` so generated artifacts keep Spec Kit file names while using Bioinfo SDD section language.
 
 **Checkpoint**: `$speckit-*` skills are usable as Codex skills and resolve the same active feature directory.
 
@@ -59,12 +59,12 @@
 
 **Independent Test**: Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check skill_tree` from the repository root and inspect the generated plan/spec artifacts for `installed_refs`, `tool_market`, `section.yml`, and evidence gate language.
 
-- [ ] T016 [US2] Update `.agents/skills/bioinfo-sdd-spec-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain `section.yml` contract requirements.
-- [ ] T017 [US2] Update `.agents/skills/bioinfo-sdd-plan-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain `installed_refs`, `tool_market`, and `bioinfo_tool` requirements.
-- [ ] T018 [US2] Update `.agents/skills/bioinfo-sdd-tasks-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain dependency-ordered Bioinfo section task generation.
-- [ ] T019 [US2] Update `.agents/skills/bioinfo-sdd-evidence-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain evidence/report gate requirements.
-- [ ] T020 [US2] Update `.specify/memory/constitution.md` to keep Spec Kit command parity subordinate to Bioinfo SDD reproducibility, tool-market, and evidence principles.
-- [ ] T021 [US2] Update `specs/001-speckit-usage-parity/contracts/linux-codex-skill-workflow.md` if implementation details change the Linux/Codex contract for skills, active feature discovery, or Bioinfo SDD validation.
+- [X] T016 [US2] Update `.agents/skills/bioinfo-sdd-spec-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain `section.yml` contract requirements.
+- [X] T017 [US2] Update `.agents/skills/bioinfo-sdd-plan-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain `installed_refs`, `tool_market`, and `bioinfo_tool` requirements.
+- [X] T018 [US2] Update `.agents/skills/bioinfo-sdd-tasks-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain dependency-ordered Bioinfo section task generation.
+- [X] T019 [US2] Update `.agents/skills/bioinfo-sdd-evidence-section/SKILL.md` so its YAML frontmatter and workflow explicitly maintain evidence/report gate requirements.
+- [X] T020 [US2] Update `.specify/memory/constitution.md` to keep Spec Kit command parity subordinate to Bioinfo SDD reproducibility, tool-market, and evidence principles.
+- [X] T021 [US2] Update `specs/001-speckit-usage-parity/contracts/linux-codex-skill-workflow.md` if implementation details change the Linux/Codex contract for skills, active feature discovery, or Bioinfo SDD validation.
 
 **Checkpoint**: Existing Bioinfo helper skills remain loadable and the tool-market contract is still explicitly enforced.
 
@@ -76,9 +76,9 @@
 
 **Independent Test**: Follow `specs/001-speckit-usage-parity/quickstart.md` from a clean shell in the repository root and confirm every documented command maps to files in this repository.
 
-- [ ] T022 [P] [US3] Update `README.md` with the Linux/Codex skill loading path, `$speckit-*` command sequence, and Bioinfo SDD contract expectations.
-- [ ] T023 [P] [US3] Update `skills/README.md` with the relationship between public Bioinfo skills, `.agents/skills/`, and the Spec Kit-style Codex command skills.
-- [ ] T024 [US3] Update `specs/001-speckit-usage-parity/quickstart.md` so its verification commands match the final skill names, file paths, and validation checks.
+- [X] T022 [P] [US3] Update `README.md` with the Linux/Codex skill loading path, `$speckit-*` command sequence, and Bioinfo SDD contract expectations.
+- [X] T023 [P] [US3] Update `skills/README.md` with the relationship between public Bioinfo skills, `.agents/skills/`, and the Spec Kit-style Codex command skills.
+- [X] T024 [US3] Update `specs/001-speckit-usage-parity/quickstart.md` so its verification commands match the final skill names, file paths, and validation checks.
 
 **Checkpoint**: The documented user journey is executable without relying on unstated project knowledge.
 
@@ -88,10 +88,10 @@
 
 **Purpose**: Prove the feature works end to end and leave the worktree ready for review.
 
-- [ ] T025 Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m unittest discover -s tests` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and fix failures in `tests/` or implementation files.
-- [ ] T026 Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check skill_tree` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and fix any skill metadata or contract failures in `.agents/skills/`.
-- [ ] T027 Run `rg -n "NEEDS [C]LARIFICATION|TO[D]O|<[A-Z_][A-Z0-9_ -]*>" specs/001-speckit-usage-parity .specify/templates .agents/skills` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and resolve accidental unresolved placeholders in `specs/001-speckit-usage-parity/`, `.specify/templates/`, and `.agents/skills/`.
-- [ ] T028 Run `git status --short` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and summarize changed files for review.
+- [X] T025 Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m unittest discover -s tests` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and fix failures in `tests/` or implementation files.
+- [X] T026 Run `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check skill_tree` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and fix any skill metadata or contract failures in `.agents/skills/`.
+- [X] T027 Run `rg -n "NEEDS [C]LARIFICATION:|TO[D]O\\(|<[A-Z_][A-Z0-9_ -]*>" specs/001-speckit-usage-parity .specify/templates .agents/skills --glob '!.agents/skills/speckit-*/SKILL.md'` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and resolve accidental unresolved placeholders in `specs/001-speckit-usage-parity/`, `.specify/templates/`, and `.agents/skills/`.
+- [X] T028 Run `git status --short` from `/home/heybro/mnt/workspace/bioinfo_skills/Bioinfo-skills` and summarize changed files for review.
 
 ---
 

@@ -7,6 +7,14 @@ metadata:
   source: "templates/commands/plan.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but the plan it
+generates must remain a Bioinfo SDD plan. Resolve the active feature from
+`.specify/feature.json` before branch fallback, and for analysis requests keep
+`section.yml` canonical, use section-local `installed_refs/` for active package
+and bioinfo_tool context, treat `tool_market/` as inactive source material, and
+preserve gates, wrappers, adapters, checks, evidence, and bounded claims.
 
 ## User Input
 

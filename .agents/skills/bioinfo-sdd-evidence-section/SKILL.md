@@ -23,9 +23,12 @@ analysis section.
 5. Link evidence to actual `pack_refs`, `workflow_ref`, `task_refs`,
    active installed-ref revision, source bundle IDs, `package_refs`,
    `tool_refs`, wrapper, adapter, and check IDs.
-6. Keep claims within `section.yml` `claims.allowed`; repeat forbidden claims as
+6. Treat the evidence/report gate as `evidence_acceptance`: evidence may be
+   drafted before approval, but accepted claims remain pending until the gate is
+   approved.
+7. Keep claims within `section.yml` `claims.allowed`; repeat forbidden claims as
    caveats when relevant.
-7. Stop at `evidence_acceptance` unless it is already approved.
+8. Stop at `evidence_acceptance` unless it is already approved.
 
 Evidence is not biological interpretation. It is a review record for whether
 the declared section ran or validated under the declared constraints.

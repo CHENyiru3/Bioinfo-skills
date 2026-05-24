@@ -7,6 +7,14 @@ metadata:
   source: "templates/commands/checklist.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but generated
+checklists must validate Bioinfo SDD requirements. Include checks for section
+scope, `section.yml`, review gates, pack/task refs, inactive `tool_market/`
+bundles, section-local `installed_refs/`, wrapper/adapter boundaries,
+deterministic checks, evidence, and bounded claims whenever the feature affects
+an analysis section.
 
 ## Checklist Purpose: "Unit Tests for English"
 

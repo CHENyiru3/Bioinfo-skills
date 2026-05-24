@@ -7,6 +7,14 @@ metadata:
   source: "templates/commands/tasks.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but generated
+tasks must execute the Bioinfo SDD plan. Keep the strict Spec Kit checklist
+format while tying work to section artifacts, `section.yml`, gates,
+section-local `installed_refs/`, wrappers, adapters, deterministic checks, and
+evidence. Concrete tools remain inactive in `tool_market/` until installed for
+the current section.
 
 ## User Input
 

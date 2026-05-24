@@ -7,6 +7,15 @@ metadata:
   source: "templates/commands/implement.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but
+implementation must execute the Bioinfo SDD task list without bypassing the
+scientific contract. Honor `section.yml`, review gates, section-local
+`installed_refs/`, inactive `tool_market/` source material, wrapper/adapter
+boundaries, deterministic checks, evidence, and bounded claims. For
+non-analysis infrastructure, keep the section explicitly N/A and validate with
+repository-level checks.
 
 ## User Input
 

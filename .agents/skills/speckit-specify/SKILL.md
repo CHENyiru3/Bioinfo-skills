@@ -7,6 +7,15 @@ metadata:
   source: "templates/commands/specify.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but the
+specification it creates must use Bioinfo SDD terminology and constraints.
+Persist the active feature in `.specify/feature.json`, and for analysis
+requests preserve `section.yml` as canonical state, stop at declared review
+gates, keep `tool_market/` inactive until installation into section-local
+`installed_refs/`, and bound wrappers, adapters, checks, evidence, and claims.
+For non-analysis infrastructure, explicitly mark the section as N/A.
 
 ## User Input
 

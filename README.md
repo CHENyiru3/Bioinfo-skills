@@ -14,9 +14,41 @@ concrete refs live in the inactive `tool_market/`, and a selected bundle is
 copied into a section-local `installed_refs/` revision before it becomes active
 context.
 
+## Codex Skill Workflow
+
+For Linux + Codex, this repository exposes a Spec Kit-style command surface
+under `.agents/skills/`. Load the repository skills in Codex, then use the same
+high-level sequence a Spec Kit user expects:
+
+```text
+$speckit-constitution
+$speckit-specify
+$speckit-clarify
+$speckit-checklist
+$speckit-plan
+$speckit-tasks
+$speckit-analyze
+$speckit-implement
+```
+
+The names and flow are Spec Kit-like, but the contract remains Bioinfo SDD. For
+analysis requests, `section.yml` is the canonical state, review gates are
+`spec_review`, `plan_review`, `task_review`, and `evidence_acceptance`, and
+`bioinfo_tool` context is active only after a selected `tool_market/` bundle is
+installed into the section-local `installed_refs/` revision. Infrastructure
+features should mark the section as N/A and validate with repository-level
+checks.
+
+The active feature pointer lives at `.specify/feature.json`, so downstream
+skills can locate `specs/<feature>/` without relying only on the git branch
+name. `AGENTS.md` points Codex at the current plan between the managed
+`SPECKIT` markers.
+
 ## Core Model
 
 - `skills/`: routing and stage guidance for biological workflow intent.
+- `.agents/skills/`: Codex-loadable Spec Kit-style workflow skills and
+  Bioinfo SDD helper skills.
 - `sdd/sections/<section_id>/`: durable section specs, plans, tasks, gates,
   evidence, run state, and active installed refs.
 - `tool_market/`: inactive source registry of selectable tool bundles and

@@ -32,6 +32,7 @@ four Bioinfo section helper skills:
 **Canonical Section State**: N/A for this feature; section requests still use `sdd/sections/<section_id>/section.yml`
 **Pack/Workflow/Task Refs**: Existing `sdd/packs/scrna_scverse/pack.yml`, `sdd/workflows/section-sdd.yml`, and section task refs stay unchanged
 **Installed Refs**: No new active tool bundle for this infrastructure feature; analysis sections must use section-local `installed_refs/`
+**Bioinfo Tool Context**: `bioinfo_tool` choices remain inactive in `tool_market/` until installed into section-local `installed_refs/`
 **Wrapper/Adapter**: No wrapper or adapter change in this planning phase
 **Testing**: frontmatter presence checks, core skill presence checks, `.specify/feature.json` pointer check, `bioinfo-sdd run-check skill_tree`, targeted unit tests if discovery code changes
 **Storage**: `.agents/skills/`, `.specify/feature.json`, `AGENTS.md`, `specs/001-speckit-usage-parity/`, README/runtime docs, tests

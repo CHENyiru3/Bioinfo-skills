@@ -16,7 +16,13 @@ Expected:
 }
 ```
 
-## 2. Confirm Core Codex Skills
+## 2. Confirm Codex Skill Load Path
+
+Codex skills for this project live under `.agents/skills/`. The core workflow
+keeps Spec Kit-style command names, while the skill bodies preserve Bioinfo SDD
+rules.
+
+## 3. Confirm Core Codex Skills
 
 ```bash
 find .agents/skills -maxdepth 2 -name SKILL.md | sort
@@ -35,7 +41,7 @@ The output must include:
 .agents/skills/speckit-implement/SKILL.md
 ```
 
-## 3. Confirm Bioinfo Helper Skill Frontmatter
+## 4. Confirm Bioinfo Helper Skill Frontmatter
 
 ```bash
 for skill in \
@@ -51,7 +57,17 @@ done
 Each file must begin with `---`, include `name:` and `description:`, and close
 the frontmatter with `---`.
 
-## 4. Validate Existing Skill Tree
+## 5. Validate Contract Tests
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m unittest \
+  tests.test_codex_skill_contract \
+  tests.test_bioinfo_sdd_contract
+```
+
+Expected result: all tests pass.
+
+## 6. Validate Existing Skill Tree
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check skill_tree
@@ -59,7 +75,7 @@ PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check skill_t
 
 Expected result: `status` is `pass`.
 
-## 5. User Workflow
+## 7. User Workflow
 
 Use the Spec Kit-style Codex sequence:
 
@@ -80,5 +96,5 @@ For Bioinfo analysis requests, the skills must route into section SDD:
 section.yml -> spec_review -> plan_review -> task_review -> evidence_acceptance
 ```
 
-Concrete tools stay inactive in `tool_market/` until installed into the
-current section's `installed_refs/`.
+Concrete tools and `bioinfo_tool` context stay inactive in `tool_market/` until
+installed into the current section's `installed_refs/`.

@@ -110,6 +110,8 @@ workflow pieces inspectable before they affect scientific conclusions.
 - The repository-local `tool_market/` MUST remain a selectable registry, not
   active section context. Selected bundles MUST be installed into
   `sdd/sections/<section_id>/installed_refs/`.
+- `bioinfo_tool` context is active only when derived from the section-local
+  installed-ref revision; the inactive market is never active execution context.
 - Biological task refs MUST describe scientific or data-state operations.
   Package refs and tool refs MUST describe one implementation of those tasks.
 - Wrapper and adapter bindings MUST be explicit paths in section state or the

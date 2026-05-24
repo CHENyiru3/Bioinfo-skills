@@ -7,6 +7,15 @@ metadata:
   source: "templates/commands/constitution.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but the
+constitution it creates or amends is the Bioinfo SDD constitution. Treat
+generic Spec Kit behavior as ergonomics only: Bioinfo section scope,
+`section.yml`, review gates, `tool_market/`, section-local `installed_refs/`,
+wrappers, adapters, deterministic checks, and evidence remain authoritative.
+For non-analysis infrastructure, explicitly mark the section as N/A instead of
+weakening analysis-section requirements.
 
 ## User Input
 

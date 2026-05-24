@@ -69,6 +69,8 @@ Spec Kit-style skills must preserve these Bioinfo SDD constraints:
   `evidence_acceptance`.
 - Concrete package and tool refs in `tool_market/` are inactive until selected
   bundles are installed into section-local `installed_refs/`.
+- `bioinfo_tool` context means installed Bioinfo package/tool refs from the
+  active section-local installed-ref revision, not the full inactive market.
 - Wrappers contain bounded analysis logic; adapters bind wrappers.
 - Evidence cannot exceed `claims.allowed`.
 

@@ -7,6 +7,13 @@ metadata:
   source: "templates/commands/analyze.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but analysis
+findings must judge Bioinfo SDD consistency. Check that specs, plans, and tasks
+preserve section scope, `section.yml`, review gates, pack/task refs, inactive
+`tool_market/` choices, section-local `installed_refs/`, wrapper/adapter
+boundaries, deterministic checks, evidence, and allowed or forbidden claims.
 
 ## User Input
 

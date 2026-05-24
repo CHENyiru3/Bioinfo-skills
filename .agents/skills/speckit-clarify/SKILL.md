@@ -7,6 +7,14 @@ metadata:
   source: "templates/commands/clarify.md"
 ---
 
+## Bioinfo SDD Contract
+
+This skill keeps the upstream Spec Kit-style Codex invocation, but
+clarifications must tighten the Bioinfo SDD contract. Prefer questions that
+resolve section scope, input state, output state, gates, pack/task refs,
+`tool_market/` selection, section-local `installed_refs/`, wrapper/adapter
+boundaries, deterministic checks, evidence, and allowed or forbidden claims.
+Do not let clarification answers bypass `section.yml` or review gates.
 
 ## User Input
 
