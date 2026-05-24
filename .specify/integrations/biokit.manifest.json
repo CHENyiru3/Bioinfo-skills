@@ -1,0 +1,17 @@
+{
+  "integration": "biokit",
+  "version": "0.8.14.dev0",
+  "installed_at": "2026-05-24T02:29:35.892131+00:00",
+  "files": {
+    ".specify/scripts/bash/setup-plan.sh": "0d1d7a66de157b0be1385bb91aa71e5bf95550217abf47a73270dab0dc52895a",
+    ".specify/scripts/bash/common.sh": "4e09d59de57a7b1f4257c2996d9a723c887c1f336fe7ab8cdacfed7e558351f1",
+    ".specify/scripts/bash/check-prerequisites.sh": "af815ccdb081802ddabe9085bffb18dcc192aa098598a1b6a5ffc25d8fe587ab",
+    ".specify/scripts/bash/setup-tasks.sh": "a204d051411028575d6abca4f70dd46abd067cb571d3c888f2f565413fa22701",
+    ".specify/scripts/bash/create-new-feature.sh": "bcf4964ca0c6c78717bb42d9e66b8c7e5ee82779cd96afc5aa7b08b75abe5790",
+    ".specify/templates/tasks-template.md": "f9b3e0d8a94959c84523b87e8c953a55d76f64fb06b610b406c0b026529b3197",
+    ".specify/templates/checklist-template.md": "8791386a8f1687889ca9d949e797c4659dd2446c9f5a864fc9e31b585e7063d1",
+    ".specify/templates/constitution-template.md": "ce7549540fa45543cca797a150201d868e64495fdff39dc38246fb17bd4024b3",
+    ".specify/templates/plan-template.md": "abef36ba71e29a6994d7cafbc4f79141bb13843f91c28bd2eeba540635af5e25",
+    ".specify/templates/spec-template.md": "aa971a461ec3aa3453b65a5de57f607425150be2f7a08bbfde8b69050bce2ba4"
+  }
+}

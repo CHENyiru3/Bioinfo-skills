@@ -17,11 +17,11 @@ Templates requiring updates:
 - ✅ updated: .specify/templates/spec-template.md
 - ✅ updated: .specify/templates/tasks-template.md
 - ✅ updated: .specify/templates/checklist-template.md
-- ✅ updated: .specify/extensions/git/commands/speckit.git.commit.md
-- ✅ updated: .specify/extensions/git/commands/speckit.git.initialize.md
-- ✅ updated: .specify/extensions/git/commands/speckit.git.feature.md
-- ✅ updated: .specify/extensions/git/commands/speckit.git.remote.md
-- ✅ checked: .specify/extensions/git/commands/speckit.git.validate.md
+- ✅ updated: .specify/extensions/git/commands/biokit.git.commit.md
+- ✅ updated: .specify/extensions/git/commands/biokit.git.initialize.md
+- ✅ updated: .specify/extensions/git/commands/biokit.git.feature.md
+- ✅ updated: .specify/extensions/git/commands/biokit.git.remote.md
+- ✅ checked: .specify/extensions/git/commands/biokit.git.validate.md
 - ✅ checked: sdd/templates/spec.md, sdd/templates/plan.md, sdd/templates/tasks.md,
   sdd/templates/evidence.md
 Follow-up TODOs: None

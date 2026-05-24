@@ -3,14 +3,15 @@
   "version": "0.8.14.dev0",
   "installed_at": "2026-05-24T02:29:35.868805+00:00",
   "files": {
-    ".agents/skills/speckit-analyze/SKILL.md": "753f1d49d830abc130132ad2864c780ea61fd57bbc71aa9888be24fdf0774800",
-    ".agents/skills/speckit-checklist/SKILL.md": "3776d66fa5d1642bbcdc60dcb90c0088e53d5ca98502d1377681e26329cc008d",
-    ".agents/skills/speckit-clarify/SKILL.md": "50eb3f8d7c6b5d5628fcfaafb4f66088d70f5a011d15c24ed1a566860b87ace1",
-    ".agents/skills/speckit-constitution/SKILL.md": "e2cbe859958c5a05be52a44d63821e6a84d39f3d37acc05b550cc7ad85da0dab",
-    ".agents/skills/speckit-implement/SKILL.md": "3d3f32d3981892c3e279117c1c7c1525c89e74297f94e87248b1c920e802eb7f",
-    ".agents/skills/speckit-plan/SKILL.md": "9d38363fef6c2b8e826646729f86e27f2892c0af9c0f5df2ac4ad97de75e48ab",
-    ".agents/skills/speckit-specify/SKILL.md": "633e9c50c22bbfa04d8690a8fc1ed89776d5820fe302380904e90f4683df4a8c",
-    ".agents/skills/speckit-tasks/SKILL.md": "df697568627da1038b089a11611056b217fdfef75a18e9183dfd8fef313bcaa9",
-    ".agents/skills/speckit-taskstoissues/SKILL.md": "7bfbf6ab4d061e6b3c9e35d68aba29dc83db57c9aa95d3c832a59a783ef99d47"
+    ".agents/skills/biokit-analyze/SKILL.md": "4db2bc1e0bf33ff44bd2f62b93ed8d56e9a87706dbf2e5a93de8f2a5a019fda1",
+    ".agents/skills/biokit-checklist/SKILL.md": "abb734ded5ea18a10c38646460ec4b5dd1f0bd20793a7f06950a81bd60dd8f11",
+    ".agents/skills/biokit-clarify/SKILL.md": "ba238b2e94015516efaf9af1755093e988746b6c85659fded9faa7f744ec282e",
+    ".agents/skills/biokit-constitution/SKILL.md": "58d0a68af3e1ed8f48a5a07fa009234aea115666d347ec1179ec9a360a2afd73",
+    ".agents/skills/biokit-distill/SKILL.md": "3f60d58b1d09cd1e25eca36abcf0a174b64df84338249c944404bc24f702c6b5",
+    ".agents/skills/biokit-implement/SKILL.md": "7bb50418b9aa8b22cda5f67a89c033db63549cdc4cc6b5c78b295db81acbee01",
+    ".agents/skills/biokit-plan/SKILL.md": "60011a273b8a364b529a68b4c70633ffd2479b25b74e6508f77a2a2dfb1343ac",
+    ".agents/skills/biokit-specify/SKILL.md": "8a493b974979623a4f23ea440b357a272d8263a117bd4006344f6a90ae1bd616",
+    ".agents/skills/biokit-tasks/SKILL.md": "0617e960b0f8076523642c4d1d6ba9accfcd43959888b9303b81fa0fb298221a",
+    ".agents/skills/biokit-taskstoissues/SKILL.md": "7c510421abcd0ede2c03bd0c49c9c2a408e3f56f5a5214d078b445e7c7cd3f0a"
   }
 }

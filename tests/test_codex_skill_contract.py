@@ -9,14 +9,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 CORE_SKILLS = [
-    "speckit-constitution",
-    "speckit-specify",
-    "speckit-clarify",
-    "speckit-checklist",
-    "speckit-plan",
-    "speckit-tasks",
-    "speckit-analyze",
-    "speckit-implement",
+    "biokit-constitution",
+    "biokit-specify",
+    "biokit-clarify",
+    "biokit-checklist",
+    "biokit-plan",
+    "biokit-tasks",
+    "biokit-analyze",
+    "biokit-distill",
+    "biokit-implement",
 ]
 
 
@@ -29,7 +30,7 @@ def _frontmatter(path: Path) -> str:
 
 
 class CodexSkillContractTest(unittest.TestCase):
-    def test_core_speckit_skills_exist_with_frontmatter(self):
+    def test_core_biokit_skills_exist_with_frontmatter(self):
         for skill_name in CORE_SKILLS:
             with self.subTest(skill=skill_name):
                 path = ROOT / ".agents" / "skills" / skill_name / "SKILL.md"
@@ -39,6 +40,20 @@ class CodexSkillContractTest(unittest.TestCase):
                 self.assertIn("description:", frontmatter)
                 text = path.read_text(encoding="utf-8")
                 self.assertIn("## Bioinfo SDD Contract", text)
+
+    def test_legacy_speckit_core_skill_dirs_are_not_installed(self):
+        legacy_names = [name.replace("biokit-", "speckit-") for name in CORE_SKILLS]
+        for skill_name in legacy_names:
+            with self.subTest(skill=skill_name):
+                self.assertFalse((ROOT / ".agents" / "skills" / skill_name).exists())
+
+    def test_distill_skill_preserves_continuity_report_contract(self):
+        path = ROOT / ".agents" / "skills" / "biokit-distill" / "SKILL.md"
+        text = path.read_text(encoding="utf-8")
+        self.assertIn("current-understanding.md", text)
+        self.assertIn("installed_refs", text)
+        self.assertIn("tool_market", text)
+        self.assertIn("Do not change `section.yml`, gates, tasks, installed", text)
 
     def test_active_feature_pointer_resolves_required_artifacts(self):
         pointer_path = ROOT / ".specify" / "feature.json"

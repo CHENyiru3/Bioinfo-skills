@@ -19,8 +19,8 @@ Expected:
 ## 2. Confirm Codex Skill Load Path
 
 Codex skills for this project live under `.agents/skills/`. The core workflow
-keeps Spec Kit-style command names, while the skill bodies preserve Bioinfo SDD
-rules.
+uses Bioinfo-owned `biokit-*` command names while preserving the Spec Kit-style
+phase sequence and Bioinfo SDD rules.
 
 ## 3. Confirm Core Codex Skills
 
@@ -31,14 +31,15 @@ find .agents/skills -maxdepth 2 -name SKILL.md | sort
 The output must include:
 
 ```text
-.agents/skills/speckit-constitution/SKILL.md
-.agents/skills/speckit-specify/SKILL.md
-.agents/skills/speckit-clarify/SKILL.md
-.agents/skills/speckit-checklist/SKILL.md
-.agents/skills/speckit-plan/SKILL.md
-.agents/skills/speckit-tasks/SKILL.md
-.agents/skills/speckit-analyze/SKILL.md
-.agents/skills/speckit-implement/SKILL.md
+.agents/skills/biokit-constitution/SKILL.md
+.agents/skills/biokit-specify/SKILL.md
+.agents/skills/biokit-clarify/SKILL.md
+.agents/skills/biokit-checklist/SKILL.md
+.agents/skills/biokit-plan/SKILL.md
+.agents/skills/biokit-tasks/SKILL.md
+.agents/skills/biokit-analyze/SKILL.md
+.agents/skills/biokit-distill/SKILL.md
+.agents/skills/biokit-implement/SKILL.md
 ```
 
 ## 4. Confirm Bioinfo Helper Skill Frontmatter
@@ -80,15 +81,19 @@ Expected result: `status` is `pass`.
 Use the Spec Kit-style Codex sequence:
 
 ```text
-$speckit-constitution
-$speckit-specify
-$speckit-clarify
-$speckit-checklist
-$speckit-plan
-$speckit-tasks
-$speckit-analyze
-$speckit-implement
+$biokit-constitution
+$biokit-specify
+$biokit-clarify
+$biokit-checklist
+$biokit-plan
+$biokit-tasks
+$biokit-analyze
+$biokit-distill
+$biokit-implement
 ```
+
+`$biokit-distill` is optional but recommended before resuming a half-finished
+workflow. It writes `specs/<active-feature>/current-understanding.md`.
 
 For Bioinfo analysis requests, the skills must route into section SDD:
 

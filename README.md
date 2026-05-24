@@ -21,14 +21,15 @@ under `.agents/skills/`. Load the repository skills in Codex, then use the same
 high-level sequence a Spec Kit user expects:
 
 ```text
-$speckit-constitution
-$speckit-specify
-$speckit-clarify
-$speckit-checklist
-$speckit-plan
-$speckit-tasks
-$speckit-analyze
-$speckit-implement
+$biokit-constitution
+$biokit-specify
+$biokit-clarify
+$biokit-checklist
+$biokit-plan
+$biokit-tasks
+$biokit-analyze
+$biokit-distill
+$biokit-implement
 ```
 
 The names and flow are Spec Kit-like, but the contract remains Bioinfo SDD. For
@@ -41,14 +42,15 @@ checks.
 
 The active feature pointer lives at `.specify/feature.json`, so downstream
 skills can locate `specs/<feature>/` without relying only on the git branch
-name. `AGENTS.md` points Codex at the current plan between the managed
-`SPECKIT` markers.
+name. `$biokit-distill` can refresh `current-understanding.md` in the active
+feature directory before resuming a half-finished workflow. `AGENTS.md` points
+Codex at the current plan between the managed `SPECKIT` markers.
 
 ## Core Model
 
 - `skills/`: routing and stage guidance for biological workflow intent.
-- `.agents/skills/`: Codex-loadable Spec Kit-style workflow skills and
-  Bioinfo SDD helper skills.
+- `.agents/skills/`: Codex-loadable `biokit-*` workflow skills and Bioinfo
+  SDD helper skills.
 - `sdd/sections/<section_id>/`: durable section specs, plans, tasks, gates,
   evidence, run state, and active installed refs.
 - `tool_market/`: inactive source registry of selectable tool bundles and
@@ -64,44 +66,43 @@ adapters. The first pack is `scrna.scverse.core`.
 
 ## Quickstart
 
-Run commands from the repository root. After package installation, use
-`bioinfo-sdd`; during local development, use:
+Run commands from the repository root with the installed CLI:
 
 ```bash
-PYTHONPATH=src python -m bioinfo_sdd --help
+bioinfo-sdd --help
 ```
 
 Inspect installable tool bundles:
 
 ```bash
-PYTHONPATH=src python -m bioinfo_sdd market-list
-PYTHONPATH=src python -m bioinfo_sdd market-show scrna.scverse.bundle.scanpy_graph_clustering.v0
+bioinfo-sdd market-list
+bioinfo-sdd market-show scrna.scverse.bundle.scanpy_graph_clustering.v0
 ```
 
 Validate the graph-clustering exemplar:
 
 ```bash
-PYTHONPATH=src python -m bioinfo_sdd validate-section scrna_graph_clustering_m1
-PYTHONPATH=src python -m bioinfo_sdd installed-refs scrna_graph_clustering_m1
-PYTHONPATH=src python -m bioinfo_sdd run-check section_catalog_links --section scrna_graph_clustering_m1
-PYTHONPATH=src python -m bioinfo_sdd run-check installed_refs --section scrna_graph_clustering_m1
-PYTHONPATH=src python -m bioinfo_sdd run-check task_slots_filled --section scrna_graph_clustering_m1
+bioinfo-sdd validate-section scrna_graph_clustering_m1
+bioinfo-sdd installed-refs scrna_graph_clustering_m1
+bioinfo-sdd run-check section_catalog_links --section scrna_graph_clustering_m1
+bioinfo-sdd run-check installed_refs --section scrna_graph_clustering_m1
+bioinfo-sdd run-check task_slots_filled --section scrna_graph_clustering_m1
 ```
 
 Run or resume the section workflow:
 
 ```bash
-PYTHONPATH=src python -m bioinfo_sdd run-workflow scrna_graph_clustering_m1 --run-id local-review
-PYTHONPATH=src python -m bioinfo_sdd set-gate scrna_graph_clustering_m1 spec_review approved --reason "reviewed"
+bioinfo-sdd run-workflow scrna_graph_clustering_m1 --run-id local-review
+bioinfo-sdd set-gate scrna_graph_clustering_m1 spec_review approved --reason "reviewed"
 ```
 
 Create a new section from templates:
 
 ```bash
-PYTHONPATH=src python -m bioinfo_sdd create-section scrna_example_m1
-PYTHONPATH=src python -m bioinfo_sdd market-list --task-ref scrna.scverse.task.graph_clustering.v0
-PYTHONPATH=src python -m bioinfo_sdd install-tool-bundle scrna_example_m1 scrna.scverse.bundle.scanpy_graph_clustering.v0
-PYTHONPATH=src python -m bioinfo_sdd validate-section scrna_example_m1
+bioinfo-sdd create-section scrna_example_m1
+bioinfo-sdd market-list --task-ref scrna.scverse.task.graph_clustering.v0
+bioinfo-sdd install-tool-bundle scrna_example_m1 scrna.scverse.bundle.scanpy_graph_clustering.v0
+bioinfo-sdd validate-section scrna_example_m1
 ```
 
 ## Current Exemplar
@@ -126,17 +127,17 @@ condition-level inference, or final biological interpretation.
 List all deterministic checks:
 
 ```bash
-PYTHONPATH=src python -m bioinfo_sdd list-checks
+bioinfo-sdd list-checks
 ```
 
 Common repository checks:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m unittest discover -s tests
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check market_manifest
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check runtime_report
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check skill_tree
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m bioinfo_sdd run-check snakemake_policy
+python -m unittest discover -s tests
+bioinfo-sdd run-check market_manifest
+bioinfo-sdd run-check runtime_report
+bioinfo-sdd run-check skill_tree
+bioinfo-sdd run-check snakemake_policy
 ```
 
 Regenerate the scverse runtime report from market package refs:
