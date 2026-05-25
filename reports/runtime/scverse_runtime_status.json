@@ -1,7 +1,10 @@
 {
   "schema_version": "0.1.0",
-  "generated_at": "2026-05-24T01:04:55.867466+00:00",
+  "generated_at": "2026-05-24T11:16:44.797950+00:00",
   "runtime_profile": "current_python",
+  "python_executable": "/home/heybro/mnt/workspace/bioinfo_skills/bioinfo_tutorial/conda_env/bin/python",
+  "python_executable_source": "local_relocated_bioinfo_tutorial",
+  "python_version": "3.11.15",
   "packages": [
     {
       "package": "scanpy",
@@ -9,9 +12,9 @@
       "import_name": "scanpy",
       "declared_runtime_status": "installed",
       "ref_path": "tool_market/packages/scrna/scverse/scanpy.md",
-      "version": null,
-      "status": "missing",
-      "failure_reason": "import: ModuleNotFoundError: No module named 'scanpy'",
+      "version": "1.11.5",
+      "status": "installed",
+      "failure_reason": null,
       "waiver_reason": null
     }
   ]

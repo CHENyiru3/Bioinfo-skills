@@ -16,7 +16,13 @@ PATTERNS = [
 class BackendNeutralNodesTest(unittest.TestCase):
     def test_workflow_skill_nodes_are_backend_neutral(self):
         offenders = []
-        for path in (ROOT / "skills/scrna/scverse/workflow").glob("*/SKILL.md"):
+        workflow_roots = [
+            ROOT / "skills/scrna/scverse/workflow",
+            ROOT / "skills/scrna/seurat/workflow",
+        ]
+        paths = [path for root in workflow_roots for path in root.glob("*/SKILL.md")]
+        self.assertTrue(paths)
+        for path in paths:
             text = path.read_text()
             for pattern in PATTERNS:
                 if re.search(pattern, text, flags=re.MULTILINE):

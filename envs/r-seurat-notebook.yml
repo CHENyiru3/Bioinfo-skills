@@ -1,0 +1,16 @@
+name: bioinfo-skills-r-seurat-notebook
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - r-base=4.4
+  - r-seurat
+  - r-irkernel
+  - r-rmarkdown
+  - r-knitr
+  - r-htmltools
+  - r-htmlwidgets
+  - jupyterlab
+  - pandoc
+  - git

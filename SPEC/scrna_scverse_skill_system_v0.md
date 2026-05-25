@@ -197,7 +197,9 @@ execution/
 envs/
   scverse-python.yml
   scverse-python-extra.txt
-  r-seurat-placeholder.yml
+  r-seurat.yml
+  r-seurat-optional.yml
+  r-seurat-notebook.yml
 
 containers/
   Dockerfile.scverse.template
@@ -205,7 +207,7 @@ containers/
   lockfiles/
     README.md
     scverse-python.conda-lock.placeholder.yml
-    r-seurat.renv.lock.placeholder
+    r-seurat.renv-decision.md
 
 scripts/
   check_scverse_runtime.py

@@ -1,0 +1,23 @@
+name: bioinfo-skills-r-seurat
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - r-base=4.4
+  - r-seurat
+  - r-seuratobject
+  - r-sctransform
+  - r-bpcells
+  - r-presto
+  - bioconductor-glmgampoi
+  - r-ggplot2
+  - r-patchwork
+  - r-dplyr
+  - r-cowplot
+  - r-tibble
+  - r-magrittr
+  - r-matrix
+  - r-future
+  - r-hdf5r
+  - r-harmony

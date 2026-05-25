@@ -3,10 +3,11 @@
 
 from __future__ import annotations
 
-import importlib
-import importlib.metadata as metadata
 import json
+import os
 import re
+import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -26,6 +27,42 @@ DIST_ALIASES = {
     "rapids_singlecell": "rapids-singlecell",
     "scfates": "scFates",
 }
+
+
+def local_relocated_python() -> Path | None:
+    python_exec = ROOT.parent / "bioinfo_tutorial" / "conda_env" / "bin" / "python"
+    if python_exec.exists():
+        return python_exec
+    return None
+
+
+def discover_python() -> tuple[Path, str]:
+    requested = os.environ.get("BIOINFO_PYTHON_EXEC")
+    if requested:
+        return Path(requested), "BIOINFO_PYTHON_EXEC"
+    relocated = local_relocated_python()
+    if relocated:
+        return relocated, "local_relocated_bioinfo_tutorial"
+    return Path(sys.executable), "current_python"
+
+
+def run_python(python_exec: Path, code: str) -> subprocess.CompletedProcess[str]:
+    env = dict(os.environ)
+    env.setdefault("MPLCONFIGDIR", "/tmp/bioinfo-skills-matplotlib")
+    return subprocess.run(
+        [str(python_exec), "-c", code],
+        cwd=ROOT,
+        env=env,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+        timeout=120,
+    )
+
+
+def tsv_row(row: dict[str, str | None]) -> dict[str, str]:
+    return {key: str(value) if value is not None else "NA" for key, value in row.items()}
 
 
 def frontmatter(path: Path) -> dict[str, str]:
@@ -50,6 +87,10 @@ def packages() -> list[dict[str, str]]:
         if ref.name == "README.md":
             continue
         meta = frontmatter(ref)
+        if meta.get("language") and meta.get("language") != "python":
+            continue
+        if meta.get("ecosystem") and meta.get("ecosystem") != "scverse":
+            continue
         package = meta.get("package") or re.sub(r"\.md$", "", ref.name)
         rows.append(
             {
@@ -63,24 +104,60 @@ def packages() -> list[dict[str, str]]:
     return rows
 
 
-def probe(row: dict[str, str]) -> dict[str, str | None]:
+def python_version(python_exec: Path) -> str | None:
+    result = run_python(python_exec, "import platform; print(platform.python_version())")
+    if result.returncode != 0:
+        return None
+    return result.stdout.strip() or None
+
+
+def probe(row: dict[str, str], python_exec: Path) -> dict[str, str | None]:
     package = row["package"]
     import_name = row["import_name"]
     dist_name = row["distribution"]
-    version = None
-    status = "missing"
+    code = f"""
+import importlib
+import importlib.metadata as metadata
+import json
+
+dist_name = {json.dumps(dist_name)}
+import_name = {json.dumps(import_name)}
+version = None
+failure_reason = None
+try:
+    version = metadata.version(dist_name)
+except Exception as exc:
+    failure_reason = f"metadata: {{type(exc).__name__}}"
+try:
+    importlib.import_module(import_name)
+    status = "installed"
     failure_reason = None
+except Exception as exc:
+    status = "missing"
+    failure_reason = f"import: {{type(exc).__name__}}: {{exc}}"
+print("BIOINFO_RUNTIME_PROBE\\t" + json.dumps({{
+    "version": version,
+    "status": status,
+    "failure_reason": failure_reason,
+}}))
+"""
     try:
-        version = metadata.version(dist_name)
-    except Exception as exc:
-        failure_reason = f"metadata: {type(exc).__name__}"
-    try:
-        importlib.import_module(import_name)
-        status = "installed"
-        failure_reason = None
-    except Exception as exc:
-        if status != "installed":
-            failure_reason = f"import: {type(exc).__name__}: {exc}"
+        result = run_python(python_exec, code)
+    except subprocess.TimeoutExpired:
+        status = "missing"
+        version = None
+        failure_reason = "probe timed out"
+    else:
+        probe_lines = [line for line in result.stdout.splitlines() if line.startswith("BIOINFO_RUNTIME_PROBE\t")]
+        if result.returncode == 0 and probe_lines:
+            payload = json.loads(probe_lines[-1].split("\t", 1)[1])
+            status = payload.get("status") or "missing"
+            version = payload.get("version")
+            failure_reason = payload.get("failure_reason")
+        else:
+            status = "missing"
+            version = None
+            failure_reason = (result.stderr or result.stdout).strip().splitlines()[-1] if (result.stderr or result.stdout).strip() else f"python exited {result.returncode}"
     return {
         "package": package,
         "distribution": dist_name,
@@ -97,11 +174,15 @@ def probe(row: dict[str, str]) -> dict[str, str | None]:
 def main() -> int:
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
     generated_at = datetime.now(timezone.utc).isoformat()
-    package_rows = [probe(row) for row in packages()]
+    python_exec, python_source = discover_python()
+    package_rows = [probe(row, python_exec) for row in packages()]
     report = {
         "schema_version": "0.1.0",
         "generated_at": generated_at,
         "runtime_profile": "current_python",
+        "python_executable": str(python_exec),
+        "python_executable_source": python_source,
+        "python_version": python_version(python_exec),
         "packages": package_rows,
     }
 
@@ -123,10 +204,14 @@ def main() -> int:
                 "waiver_reason",
             ],
             delimiter="\t",
+            lineterminator="\n",
         )
         writer.writeheader()
-        writer.writerows(package_rows)
+        writer.writerows(tsv_row(row) for row in package_rows)
     lines = ["# scverse Runtime Status", "", f"Generated: {generated_at}", ""]
+    lines.append(f"Python executable: `{report['python_executable']}` ({python_source})")
+    lines.append(f"Python version: `{report['python_version'] or 'unknown'}`")
+    lines.append("")
     for row in package_rows:
         version = row["version"] or ""
         note = row["failure_reason"] or ""

@@ -1,2 +1,2 @@
 package	distribution	import_name	declared_runtime_status	ref_path	version	status	failure_reason	waiver_reason
-scanpy	scanpy	scanpy	installed	tool_market/packages/scrna/scverse/scanpy.md		missing	import: ModuleNotFoundError: No module named 'scanpy'	
+scanpy	scanpy	scanpy	installed	tool_market/packages/scrna/scverse/scanpy.md	1.11.5	installed	NA	NA

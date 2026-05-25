@@ -26,6 +26,12 @@ workflows are created.
   Codex-first, section-level Spec-Driven Development system with durable
   section artifacts, local capability packs, gates, run state, checks, and
   evidence.
+- [Environment Transferability And Version Traceability](environment_transferability_and_version_traceability.md):
+  draft plan for synchronizing package refs, skill refs, environment specs,
+  lock snapshots, and runtime reports across scverse and Seurat/R support.
+- [Seurat R Package Support Plan](seurat_r_package_support_plan.md): draft
+  package-tier, environment, skill-tree, tool-ref, and task plan for adding
+  R/Seurat support from the local Seurat tutorial source material.
 
 ## SPEC Rules
 

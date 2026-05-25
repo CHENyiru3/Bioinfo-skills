@@ -1,0 +1,259 @@
+schema_version: "0.1.0"
+matrix_id: bioinfo-skills.package_matrix
+source_specs:
+  - SPEC/environment_transferability_and_version_traceability.md
+  - SPEC/seurat_r_package_support_plan.md
+environment_groups:
+  scverse_core:
+    description: Python/scverse packages needed by approved Python wrappers.
+    env_files:
+      - envs/scverse-python.yml
+  scverse_extra:
+    description: Optional Python packages used by broader tutorials or advanced workflows.
+    env_files:
+      - envs/scverse-python-extra.txt
+  r_seurat_core:
+    description: Core R/Seurat runtime for object creation, preprocessing, dimensionality reduction, graph clustering, visualization, and marker ranking.
+    env_files:
+      - envs/r-seurat.yml
+  r_seurat_performance:
+    description: Recommended packages for scale, speed, and count-model performance.
+    env_files:
+      - envs/r-seurat.yml
+  r_seurat_modalities:
+    description: Optional packages for ATAC, spatial, multimodal, reference mapping, conversion, and method extensions.
+    env_files:
+      - envs/r-seurat-optional.yml
+  r_notebook_docs:
+    description: R notebook and rendered documentation tooling.
+    env_files:
+      - envs/r-seurat-notebook.yml
+  r_tutorial_data:
+    description: SeuratData and dataset packages used by tutorials; not part of the default runtime.
+    env_files: []
+packages:
+  - id: scrna.scverse.package.scanpy
+    package: scanpy
+    import_name: scanpy
+    language: python
+    ecosystem: scverse
+    package_ref: tool_market/packages/scrna/scverse/scanpy.md
+    skill_refs:
+      - skills/scrna/scverse/SKILL.md
+    env_groups:
+      - scverse_core
+    conda_package: scanpy
+    source_urls:
+      - https://scanpy.readthedocs.io/en/stable/
+    desired_version: null
+    runtime_probe: "python -c 'import scanpy; print(scanpy.__version__)'"
+    status: active
+  - id: scrna.seurat.package.seurat
+    package: Seurat
+    import_name: Seurat
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/seurat.md
+    skill_refs:
+      - skills/scrna/seurat/SKILL.md
+    env_groups:
+      - r_seurat_core
+    conda_package: r-seurat
+    cran_package: Seurat
+    source_urls:
+      - https://satijalab.org/seurat/
+      - https://cran.r-project.org/package=Seurat
+    source_version_policy: "local mirror label 5.4.0; runtime may be newer"
+    desired_version: null
+    runtime_probe: "library(Seurat); packageVersion('Seurat')"
+    status: active
+  - id: scrna.seurat.package.seuratobject
+    package: SeuratObject
+    import_name: SeuratObject
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/seuratobject.md
+    skill_refs:
+      - skills/scrna/seurat/SKILL.md
+    env_groups:
+      - r_seurat_core
+    conda_package: r-seuratobject
+    cran_package: SeuratObject
+    source_urls:
+      - https://satijalab.github.io/seurat-object/
+    runtime_probe: "library(SeuratObject); packageVersion('SeuratObject')"
+    status: active
+  - id: scrna.seurat.package.sctransform
+    package: sctransform
+    import_name: sctransform
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/sctransform.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/04_normalization_transform/SKILL.md
+    env_groups:
+      - r_seurat_core
+    conda_package: r-sctransform
+    cran_package: sctransform
+    source_urls:
+      - https://satijalab.org/seurat/articles/sctransform_vignette.html
+    runtime_probe: "library(sctransform); packageVersion('sctransform')"
+    status: active
+  - id: scrna.seurat.package.bpcells
+    package: BPCells
+    import_name: BPCells
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/bpcells.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/16_specialized_ecosystem/SKILL.md
+    env_groups:
+      - r_seurat_performance
+    conda_package: r-bpcells
+    cran_package: BPCells
+    source_urls:
+      - https://bnprks.github.io/BPCells/
+      - https://satijalab.org/seurat/articles/seurat5_bpcells_interaction_vignette.html
+    runtime_probe: "library(BPCells); packageVersion('BPCells')"
+    status: active
+  - id: scrna.seurat.package.presto
+    package: presto
+    import_name: presto
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/presto.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/11_marker_ranking/SKILL.md
+    env_groups:
+      - r_seurat_performance
+    conda_package: r-presto
+    source_urls:
+      - https://github.com/immunogenomics/presto
+    runtime_probe: "library(presto); packageVersion('presto')"
+    status: active
+  - id: scrna.seurat.package.glmgampoi
+    package: glmGamPoi
+    import_name: glmGamPoi
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/glmgampoi.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/04_normalization_transform/SKILL.md
+    env_groups:
+      - r_seurat_performance
+    conda_package: bioconductor-glmgampoi
+    bioconductor_package: glmGamPoi
+    source_urls:
+      - https://github.com/const-ae/glmGamPoi
+      - https://bioconductor.org/packages/glmGamPoi/
+    runtime_probe: "library(glmGamPoi); packageVersion('glmGamPoi')"
+    status: active
+  - id: scrna.seurat.package.signac
+    package: Signac
+    import_name: Signac
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/signac.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/16_specialized_ecosystem/SKILL.md
+    env_groups:
+      - r_seurat_modalities
+    conda_package: r-signac
+    cran_package: Signac
+    source_urls:
+      - https://stuartlab.org/signac/
+    runtime_probe: "library(Signac); packageVersion('Signac')"
+    status: active
+  - id: scrna.seurat.package.harmony
+    package: harmony
+    import_name: harmony
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/harmony.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/07_batch_integration/SKILL.md
+    env_groups:
+      - r_seurat_modalities
+    conda_package: r-harmony
+    cran_package: harmony
+    source_urls:
+      - https://portals.broadinstitute.org/harmony/
+    runtime_probe: "library(harmony); packageVersion('harmony')"
+    status: active
+  - id: scrna.seurat.package.seuratdata
+    package: SeuratData
+    import_name: SeuratData
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/seuratdata.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/01_data_ingest/SKILL.md
+    env_groups:
+      - r_tutorial_data
+    github_repo: satijalab/seurat-data
+    install_route: source
+    source_install_script: scripts/install_seurat_source_packages.R
+    source_urls:
+      - https://github.com/satijalab/seurat-data
+    source_commit: 3e51f44303069b64f5dc4d68e6a3d4a343f55c39
+    source_archive: https://github.com/satijalab/seurat-data/archive/3e51f44303069b64f5dc4d68e6a3d4a343f55c39.tar.gz
+    runtime_probe: "library(SeuratData); packageVersion('SeuratData')"
+    status: optional
+  - id: scrna.seurat.package.seuratwrappers
+    package: SeuratWrappers
+    import_name: SeuratWrappers
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/seuratwrappers.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/07_batch_integration/SKILL.md
+      - skills/scrna/seurat/workflow/16_specialized_ecosystem/SKILL.md
+    env_groups:
+      - r_seurat_modalities
+    github_repo: satijalab/seurat-wrappers
+    install_route: source
+    source_install_script: scripts/install_seurat_source_packages.R
+    source_urls:
+      - https://github.com/satijalab/seurat-wrappers
+    source_commit: ffaf74e306279b1ec16e31c9cb2142ebb2bc4bc1
+    source_archive: https://github.com/satijalab/seurat-wrappers/archive/ffaf74e306279b1ec16e31c9cb2142ebb2bc4bc1.tar.gz
+    runtime_probe: "library(SeuratWrappers); packageVersion('SeuratWrappers')"
+    status: optional
+  - id: scrna.seurat.package.azimuth
+    package: Azimuth
+    import_name: Azimuth
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/azimuth.md
+    skill_refs:
+      - skills/scrna/seurat/workflow/12_annotation_support/SKILL.md
+    env_groups:
+      - r_seurat_modalities
+    github_repo: satijalab/azimuth
+    install_route: source
+    source_install_script: scripts/install_seurat_source_packages.R
+    source_urls:
+      - https://github.com/satijalab/azimuth
+    source_commit: ad5929686e005ae91d8452187a3a1d8c0563fdd5
+    source_archive: https://github.com/satijalab/azimuth/archive/ad5929686e005ae91d8452187a3a1d8c0563fdd5.tar.gz
+    runtime_probe: "library(Azimuth); packageVersion('Azimuth')"
+    status: optional
+  - id: scrna.seurat.package.seuratdisk
+    package: SeuratDisk
+    import_name: SeuratDisk
+    language: r
+    ecosystem: seurat
+    package_ref: tool_market/packages/scrna/seurat/seuratdisk.md
+    skill_refs:
+      - skills/scrna/interoperability/SKILL.md
+    env_groups:
+      - r_seurat_modalities
+    github_repo: mojaveazure/seurat-disk
+    install_route: source
+    source_install_script: scripts/install_seurat_source_packages.R
+    source_urls:
+      - https://mojaveazure.github.io/seurat-disk/
+    source_commit: 877d4e18ab38c686f5db54f8cd290274ccdbe295
+    source_archive: https://github.com/mojaveazure/seurat-disk/archive/877d4e18ab38c686f5db54f8cd290274ccdbe295.tar.gz
+    runtime_probe: "library(SeuratDisk); packageVersion('SeuratDisk')"
+    status: optional
